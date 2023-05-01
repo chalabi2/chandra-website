@@ -51,7 +51,7 @@ const Model = () => {
           action!.setLoop(THREE.LoopOnce, 1); // Set the loop style to LoopOnce
           action!.clampWhenFinished = true;
           action!.timeScale = 0.2; // Reset the timeScale to its original value
-          action!.time = 2.2; // Set the initial time of the animation to 2
+          action!.time = 2.5; // Set the initial time of the animation to 2
           action!.play();
         });
     }}
