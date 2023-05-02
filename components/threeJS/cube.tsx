@@ -64,7 +64,7 @@ const Model = () => {
 
   return (
     <group ref={meshRef}>
-      <primitive object={scene} position={[0,0.1,0]} />
+      <primitive object={scene} position={[0,-0.3,0]} />
     </group>
   );
 };
