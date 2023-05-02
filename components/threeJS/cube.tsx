@@ -6,13 +6,17 @@ import { Color } from 'three';
 import flowerModel from './components/justflowernostem.glb';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
-import { PerspectiveCamera } from '@react-three/drei';
+import { useBreakpointValue } from '@chakra-ui/react';
 
 const Model = () => {
+
+
   const gltfResult = useGLTF(flowerModel);
   const gltf = gltfResult as unknown as GLTF;
   const { scene, animations } = gltf;
   const meshRef = useRef<THREE.Object3D | null>(null);
+
+  const scale = useBreakpointValue({ base: 0.3, md: 0.55 });
 
   const { actions, mixer } = useAnimations(animations || [], meshRef);
 
@@ -43,7 +47,7 @@ const Model = () => {
       
       scene.traverse(changeMaterialColor);
     if (scene) {
-      scene.scale.set(0.55, 0.55, 0.55);
+      scene.scale.set(scale ?? 0.55, scale ?? 0.55, scale ?? 0.55);
       scene.rotation.x = 1;
       Object.values(actions)
         .filter((action) => action !== null)
@@ -55,7 +59,7 @@ const Model = () => {
           action!.play();
         });
     }}
-}, [scene, actions, mixer]);
+}, [scene, actions, mixer, scale]);
 
   useFrame((state, delta) => {
     scene.rotation.y += 0.001;
@@ -70,13 +74,27 @@ const Model = () => {
 };
 
 export default function LotusFlower() {
+  
+  const flowerTop = useBreakpointValue({ base: "200px", md: "50px" });
+const flowerLeft = useBreakpointValue({ base: "30px", md: "600px", sm: "100px",  });
+const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
+
   return (
-<Box maxW="400px" maxH="400px" zIndex={-1}>
-<Canvas style={{ position: 'absolute', top: -9, left: 300, blockSize: 800, height: 1000 }}>
-  <ambientLight />
-  <pointLight position={[10, 10, 10]} shadow />
-  <Model />
-</Canvas>
+    <Box maxW={flowerSize} maxH={flowerSize} zIndex={-1}>
+      <Canvas
+        style={{
+          position: "absolute",
+          top: flowerTop,
+          left: flowerLeft,
+          blockSize: 800,
+          height: 1000,
+          width: flowerSize,
+        }}
+      >
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} shadow />
+        <Model />
+      </Canvas>
     </Box>
   );
 }
