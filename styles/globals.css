@@ -16,8 +16,9 @@
 
 .background-image-container::before {
   content: "";
+  rotate: 180deg;
   position: absolute;
-  top: -3000px;
+  top: -4000px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -33,7 +34,7 @@
 .background-image-container2::before {
   content: "";
   position: absolute;
-  top: -100px;
+  top: 1000px;
   left: 0;
   right: 0;
   bottom: 0;

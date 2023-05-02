@@ -30,6 +30,8 @@ import {
   IoBrowsersSharp,
   IoAnalyticsSharp,
   IoCameraSharp,
+  IoIdCardSharp,
+  IoPeopleSharp,
 } from "react-icons/io5";
 
 import { useState } from "react";
@@ -110,7 +112,7 @@ export default function Home() {
         <Box
           className="background-image-container"
           width="100%" // Make the container span the full width
-          py={200}
+          py={0}
         >
           <Box position="relative" zIndex={1}>
             <HStack
@@ -120,7 +122,7 @@ export default function Home() {
               maxW="3xl"
               justifyContent="center"
             >
-              <VStack maxH="600px">
+              <VStack mt={100} maxH="600px">
                 <Box zIndex={1} textAlign="center">
                   <Heading
                     zIndex={0}
@@ -167,7 +169,7 @@ export default function Home() {
         </Box>
       </Flex>
       <VStack className="background-image-container2">
-        <Box mt={800} zIndex={1} ml={0} textAlign="center">
+        <Box mt={1000} zIndex={1} ml={0} textAlign="center">
           <Heading
             zIndex={0}
             textAlign={"center"}
@@ -205,7 +207,7 @@ export default function Home() {
             and maintains high uptime, bare metal machines.
           </Text>
         </Box>
-        <Box zIndex={1} ml={0} textAlign="center">
+        <Box pb={-400} zIndex={1} ml={0} textAlign="center">
           <Grid
             mt={10}
             templateColumns={statColumns}
@@ -220,7 +222,7 @@ export default function Home() {
                 flexDirection="column"
               >
                 <Heading fontSize={{ base: "1xl", sm: "2xl", md: "3xl" }}>
-                  Total Staked Assets
+                  Total Value Staked
                 </Heading>
                 <Box mt={1}>
                   <Divider />
@@ -233,7 +235,7 @@ export default function Home() {
             <GridItem>
               <Flex
                 p="2"
-                height={175}
+                height={0}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -249,7 +251,7 @@ export default function Home() {
             <GridItem>
               <Flex
                 p="2"
-                height={175}
+                height={0}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -265,7 +267,7 @@ export default function Home() {
             <GridItem>
               <Flex
                 p="2"
-                height={175}
+                height={0}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -291,7 +293,6 @@ export default function Home() {
               <Flex
                 p="2"
                 width={400}
-                height={400}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -317,7 +318,6 @@ export default function Home() {
               <Flex
                 p="2"
                 width={400}
-                height={400}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -342,7 +342,6 @@ export default function Home() {
               <Flex
                 p="2"
                 width={400}
-                height={400}
                 textAlign={"left"}
                 flexDirection="column"
               >
@@ -371,7 +370,6 @@ export default function Home() {
       <Box
         className="background-image-container"
         width="100%" // Make the container span the full width
-        py={200}
       >
         <Box position="relative" zIndex={1}>
           <Stack direction={direction} justifyContent={"space-between"}>
@@ -388,18 +386,27 @@ export default function Home() {
                 spacing={5}
                 justifyContent={"start"}
               >
-                <HStack>
-                  <Box
-                    borderRadius={"10px"}
-                    width="100px"
-                    height="100px"
-                    border="1px"
-                    zIndex={1}
-                  >
-                    <Icon boxSize={"100px"}>
-                      <IoAnalyticsSharp />
-                    </Icon>
-                  </Box>
+                <HStack
+                >
+                <Box
+  borderRadius={"10px"}
+  width="75px"
+  height="75px"
+  border="1px"
+  zIndex={1}
+  position="relative"
+>
+<Icon
+      boxSize={"100px"}
+      position="absolute"
+      top="5%"
+      left="5%"
+
+    >
+    <IoAnalyticsSharp />
+  </Icon>
+</Box>
+
                   <VStack alignItems="start">
                     <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Public Endpoints
@@ -410,18 +417,24 @@ export default function Home() {
                   </VStack>
                 </HStack>
                 <HStack>
-                  <Box
-                    borderRadius={"10px"}
-                    width="100px"
-                    height="100px"
-                    border="1px"
-                    zIndex={1}
-                    textAlign="Left"
-                  >
-                    <Icon boxSize={"100px"}>
-                      <IoServerSharp />
-                    </Icon>
-                  </Box>
+                <Box
+  borderRadius={"10px"}
+  width="75px"
+  height="75px"
+  border="1px"
+  zIndex={1}
+  position="relative"
+>
+<Icon
+      boxSize={"100px"}
+      position="absolute"
+      top="5%"
+      left="5%"
+
+    >
+    <IoIdCardSharp />
+  </Icon>
+</Box>
                   <VStack alignItems="start">
                     <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       White Label
@@ -432,18 +445,24 @@ export default function Home() {
                   </VStack>
                 </HStack>
                 <HStack>
-                  <Box
-                    borderRadius={"10px"}
-                    width="100px"
-                    height="100px"
-                    border="1px"
-                    zIndex={1}
-                    textAlign="Left"
-                  >
-                    <Icon boxSize={"75px"}>
-                      <IoCameraSharp />
-                    </Icon>
-                  </Box>
+                <Box
+  borderRadius={"10px"}
+  width="75px"
+  height="75px"
+  border="1px"
+  zIndex={1}
+  position="relative"
+>
+<Icon
+      boxSize={"100px"}
+      position="absolute"
+      top="5%"
+      left="5%"
+
+    >
+    <IoCameraSharp />
+  </Icon>
+</Box>
                   <VStack alignItems="start">
                     <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Snapshots
@@ -454,18 +473,24 @@ export default function Home() {
                   </VStack>
                 </HStack>
                 <HStack>
-                  <Box
-                    borderRadius={"10px"}
-                    width="100px"
-                    height="100px"
-                    border="1px"
-                    zIndex={1}
-                    textAlign="Left"
-                  >
-                    <Icon boxSize={"75px"}>
-                      <IoServerSharp />
-                    </Icon>
-                  </Box>
+                <Box
+  borderRadius={"10px"}
+  width="75px"
+  height="75px"
+  border="1px"
+  zIndex={1}
+  position="relative"
+>
+<Icon
+      boxSize={"100px"}
+      position="absolute"
+      top="5%"
+      left="5%"
+
+    >
+    <IoPeopleSharp />
+  </Icon>
+</Box>
                   <VStack alignItems="start">
                     <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Advising
