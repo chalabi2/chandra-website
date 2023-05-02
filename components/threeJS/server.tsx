@@ -19,7 +19,7 @@ const Model = () => {
     useEffect(() => {
       if (scene) {
         if (scene) {
-          scene.scale.set(1, 1, 1);
+          scene.scale.set(2, 2, 2);
           scene.rotation.y = -5;
           Object.values(actions)
             .filter((action) => action !== null)
@@ -54,7 +54,7 @@ const Model = () => {
 
 export default function ServerRack() {
   return (
-<Box zIndex={-1}>
+<Box zIndex={-10}>
 <Canvas style={{ position: 'absolute', top: 9, left: 0 }}>
   <ambientLight />
   <pointLight position={[0, 0, 10]} shadow />
