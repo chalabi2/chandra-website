@@ -11,11 +11,13 @@ import {
     Box,
     Text,
   } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
   import {
     IoServerSharp,
     IoBrowsersSharp,
     IoLockClosedSharp,
   } from "react-icons/io5";
+import { getDelegators, getTvl } from "../queries/queries";
   
   function Validating() {
     const gridTemplateColumns = useBreakpointValue({
@@ -36,6 +38,18 @@ import {
         md: "center",
         lg: 0,
       });
+
+    const [totalStakers, setTotalStakers] = useState(0);
+
+    useEffect(() => {
+        getDelegators().then(setTotalStakers);
+    }, []);
+
+    const [tvl, setTvl] = useState(0);
+
+    useEffect(() => {
+        getTvl().then(setTvl);
+    }, []);
   
     return (
       <VStack className="background-image-container2">
@@ -64,7 +78,7 @@ import {
               Enterprise Grade Infrastructure
             </Text>
             <Box mt={3}>
-              <Divider />
+            <Divider borderColor={useColorModeValue("#013133", "#b5fdff")} />
             </Box>
           </Heading>
           <Text
@@ -90,10 +104,10 @@ import {
                   Total Value Staked
                 </Heading>
                 <Box mt={1}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
                 <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
-                  $10,000,000
+                  ${tvl}
                 </Text>
               </Flex>
             </GridItem>
@@ -103,9 +117,9 @@ import {
                   Delegators
                 </Heading>
                 <Box mt={1}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>69</Text>
+                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>{totalStakers}</Text>
               </Flex>
             </GridItem>
             <GridItem>
@@ -114,9 +128,9 @@ import {
                   Networks Supported
                 </Heading>
                 <Box mt={1}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>8</Text>
+                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>14</Text>
               </Flex>
             </GridItem>
             <GridItem>
@@ -125,7 +139,7 @@ import {
                   Uptime
                 </Heading>
                 <Box mt={1}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
                 <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>98%</Text>
               </Flex>
@@ -143,7 +157,7 @@ import {
                   Hardware
                 </Heading>
                 <Box mb={3}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
                 <Text fontSize="lg">
                   Workloads vary and our wide array of hardware is fit for any
@@ -163,7 +177,7 @@ import {
                   Monitoring
                 </Heading>
                 <Box mb={3}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
                 <Text fontSize="lg">
                   We monitor our infrastructure with Prometheus, Grafana,
@@ -182,7 +196,7 @@ import {
                   Security
                 </Heading>
                 <Box mb={3}>
-                  <Divider />
+                <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
                 <Text fontSize="lg">
                   From firewall hardware to Horcrux and failover nodes we have a

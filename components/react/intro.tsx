@@ -7,6 +7,7 @@ import {
     Divider,
     Box,
     Text,
+    useColorMode,
   } from "@chakra-ui/react";
   import LotusFlower from "../threeJS/cube";
 
@@ -28,7 +29,7 @@ import {
             <HStack
   maxH="600px"
   alignContent={"center"}
-  py={20}
+  py={-10}
   maxW="3xl"
   justifyContent="center"
   flexDirection={flexDirection}
@@ -58,8 +59,8 @@ import {
                       | Validator of the Lunar God चन्द्र |
                     </Text>
                     <Box mt={3}>
-                      <Divider />
-                    </Box>
+  <Divider borderColor={useColorModeValue("#013133", "#b5fdff")} />
+</Box>
                   </Heading>
                   <Text
                     maxW={600}
@@ -67,10 +68,7 @@ import {
                     mt={3}
                     fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}
                   >
-                    Chandra Station is a multi disciplined infrastructure
-                    provider, validator, and development house. We are investors,
-                    programmers and thinkers looking to help push the Cosmos
-                    forward.
+                    Chandra Station, a multifaceted infrastructure provider and validator, combines investment expertise with software development skill to help drive the evolution of the Cosmos ecosystem.
                   </Text>
                 </Box>
               </VStack>

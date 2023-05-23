@@ -10,6 +10,10 @@ import {
     Image,
     Text,
     useBreakpointValue,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
   } from "@chakra-ui/react";
   import Link from "next/link";
   import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
@@ -23,27 +27,37 @@ import {
     IconButton,
     Box,
   } from "@chakra-ui/react";
-  import { HamburgerIcon } from "@chakra-ui/icons";
+  import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
   import { useState } from "react";
+  import ServiceButton from "./service-button";
   
   const MenuItems = ({ stackType }) => {
     const StackComponent = stackType === "HStack" ? HStack : VStack;
+    const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
     return (
       <StackComponent spacing={10}>
-        <Link href={"/"}>
-          <Text fontSize="lg">Services</Text>
-        </Link>
-        <Link href={"/"}>
-          <Text fontSize="lg">Blog</Text>
-        </Link>
+       <ServiceButton/>
+      <Link href="/blog" passHref>
+  <Button _hover={{
+            bgColor: hoverBgColor,
+          }}
+           colorScheme={useColorModeValue("#b5fdff", "#013133")} variant="ghost" as="a">
+    <Text fontSize="lg">Blog</Text>
+  </Button>
+</Link>
+<Link href={"/staking"}>
         <Button
-          variant="outline"
+        variant={"outline"}
           fontSize="lg"
-          colorScheme={useColorModeValue("dark", "light")}
+          colorScheme={useColorModeValue("#b5fdff", "#013133")}
           size={"sm"}
+          _hover={{
+            bgColor: hoverBgColor,
+          }}
         >
           Stake With Us
         </Button>
+        </Link>
       </StackComponent>
     );
   };
@@ -75,19 +89,42 @@ import {
       md: "none",
       lg: "flex",
     });
+
+    const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
   
     return (
-        <Flex maxW={"8xl"} align="center" justifyContent="space-between" py={3}>
+      <Box p={2} w="100%" borderRadius={4} zIndex={10} top="0" position="sticky" bgColor={useColorModeValue("rgba(181, 253, 255, 0.75)", "rgba(1, 49, 51, 0.75)")}>
+      <Flex
+        maxW="8xl"
+        mx="auto" // this centers the Flex on the page
+        align="center"
+        zIndex={10}
+        position="sticky"
+        top="0"
+        justifyContent="space-between"
+        py={7}
+      >
           <HStack spacing={4}>
+            <Link href={"/"}>
+              <Button
+              variant="ghost"
+              _hover={{
+                bgColor: "transparent",
+                boxShadow: "none"
+              }}
+              >
             <Image
               borderRadius="full"
               boxSize="75px"
               src="/logo.png"
               alt="Chandra Station"
             />
+            </Button>
+            </Link>
             <Text as={"h1"} fontSize="2xl" fontWeight={"bold"}>
               Chandra Station
             </Text>
+
           </HStack>
           <Flex justifyContent="space-between" align="center" textAlign="center">
             <Box display={displayMenu}>
@@ -135,18 +172,24 @@ import {
           display={displayDarkModeButton}
           size={"sm"}
           variant="outline"
+          color={useColorModeValue("#013133", "#b5fdff")}
           px={2}
           mt={0}
           mr={0}
           ml={10}
           onClick={toggleColorMode}
+          _hover={{
+            bgColor: hoverBgColor,
+          }}
         >
           <Icon
+            color={useColorModeValue("#013133", "#b5fdff")}
             as={colorMode === "light" ? BsFillMoonStarsFill : BsFillSunFill}
           />
         </Button>
       </Flex>
     </Flex>
+    </Box>
   );
 }
 

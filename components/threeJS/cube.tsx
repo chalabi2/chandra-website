@@ -1,12 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Box } from '@chakra-ui/react';
-import { useAnimations, useGLTF, useTexture } from '@react-three/drei';
+import { useAnimations, useGLTF, useProgress, useTexture } from '@react-three/drei';
 import { Color } from 'three';
 import flowerModel from './components/justflowernostem.glb';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 import { useBreakpointValue } from '@chakra-ui/react';
+import { Html } from '@react-three/drei';
+import Loading from '../loader';
 
 const Model = () => {
 
@@ -55,7 +57,7 @@ const Model = () => {
           action!.setLoop(THREE.LoopOnce, 1); // Set the loop style to LoopOnce
           action!.clampWhenFinished = true;
           action!.timeScale = 0.2; // Reset the timeScale to its original value
-          action!.time = 2.5; // Set the initial time of the animation to 2
+          action!.time = 2.6; // Set the initial time of the animation to 2
           action!.play();
         });
     }}
@@ -81,6 +83,7 @@ const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
 
   return (
     <Box maxW={flowerSize} maxH={flowerSize} zIndex={-1}>
+      <Loading />
       <Canvas
         style={{
           position: "absolute",
@@ -89,6 +92,7 @@ const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
           blockSize: 800,
           height: 1000,
           width: flowerSize,
+          zIndex: 0
         }}
       >
         <ambientLight />

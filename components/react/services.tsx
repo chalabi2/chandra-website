@@ -206,7 +206,7 @@ import {
                       Cosmos AIO
                     </Text>
                     <Box mt={3}>
-                      <Divider />
+                    <Divider borderColor={useColorModeValue("#013133", "#b5fdff")} />
                     </Box>
                   </Heading>
                   <Text
