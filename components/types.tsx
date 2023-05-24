@@ -1,15 +1,6 @@
 import { MouseEventHandler, ReactNode, RefObject } from 'react';
 import { IconType } from 'react-icons';
 
-export interface DataType extends OptionBase {
-  isDisabled?: boolean;
-  label: string;
-  value: string;
-  icon?: string;
-  chainId: string;
-  chainRoute?: string;
-}
-
 export interface ChooseChainInfo {
   chainName: string;
   chainRoute?: string;
@@ -24,7 +15,12 @@ export enum WalletStatus {
   Loading = 'Loading',
   Loaded = 'Loaded',
   NotExist = 'NotExist',
-  Rejected = 'Rejected'
+  Rejected = 'Rejected',
+}
+
+export enum TransactionResult {
+  Success = 0,
+  Failed = 1,
 }
 
 export interface ConnectWalletType {
@@ -36,10 +32,30 @@ export interface ConnectWalletType {
 }
 
 export interface ConnectedUserCardType {
+  walletIcon?: string;
   username?: string;
   icon?: ReactNode;
-  walletIcon?: string;
 }
+
+export interface FeatureProps {
+  title: string;
+  text: string;
+  href: string;
+}
+
+export interface ChainCardProps {
+  prettyName: string;
+  icon?: string;
+}
+
+export type CopyAddressType = {
+  address?: string;
+  walletIcon?: string;
+  isLoading?: boolean;
+  maxDisplayLength?: number;
+  isRound?: boolean;
+  size?: string;
+};
 
 export interface OptionBase {
   variant?: string;
@@ -74,17 +90,16 @@ export interface ChangeChainMenuType {
   innerRef?: RefObject<HTMLInputElement>;
 }
 
-export interface FeatureProps {
-  title: string;
-  text: string;
-  href: string;
+export interface MyValidator {
+  details: string | undefined;
+  name: string | undefined;
+  address: string;
+  staked: number;
+  reward: number;
+  identity: string | undefined;
+  commission: string | undefined;
 }
 
-export type CopyAddressType = {
-  address?: string;
-  walletIcon?: string;
-  isLoading?: boolean;
-  maxDisplayLength?: number;
-  isRound?: boolean;
-  size?: string;
+export type ImageSource = {
+  imageSource: 'cosmostation' | 'keybase';
 };

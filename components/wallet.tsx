@@ -30,7 +30,7 @@ import {
   ChainOption,
   ConnectWalletButton,
 } from '.';
-import { defaultChainName } from '../config';
+import { defaultChainName } from '../config/defaults';
 import { ChainName } from '@cosmos-kit/core';
 
 export const WalletSection = ({

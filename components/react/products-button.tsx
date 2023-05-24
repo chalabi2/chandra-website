@@ -1,10 +1,8 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Button, Menu, MenuButton, MenuItem, MenuList, useColorModeValue } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from 'next/router';
 
-function ServiceButton() {
-  const router = useRouter();
+function ProductButton() {
+
     const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
 
     return (
@@ -18,7 +16,6 @@ variant="ghost"
           rightIcon={<ChevronDownIcon boxSize="25px" />}
           aria-label="More"
           position="absolute"
-          ml="-100px"
           size="md"
           variant="ghost"
           zIndex={1}
@@ -26,7 +23,7 @@ variant="ghost"
             bgColor: hoverBgColor,
           }}
         
-        >Services</MenuButton>
+        >Products</MenuButton>
         <MenuList
         p={0} minW="0" w={'90px'}
           height="74px"
@@ -34,28 +31,44 @@ variant="ghost"
           color="white"
         >
           <MenuItem
-           onClick={() => router.push('/services?tabIndex=0')}
           fontFamily="Futura"
             _hover={{
               textDecoration: "underline",
             }}
             bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
           >
-            Endpoints
+            Apollo
           </MenuItem>
           <MenuItem
-            onClick={() => router.push('/services?tabIndex=1')}
           fontFamily="Futura"
             _hover={{
               textDecoration: "underline",
             }}
             bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
           >
-            Snapshots
+            Analytics
+          </MenuItem>
+          <MenuItem
+          fontFamily="Futura"
+            _hover={{
+              textDecoration: "underline",
+            }}
+            bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+          >
+            Bridge
+          </MenuItem>
+          <MenuItem
+          fontFamily="Futura"
+            _hover={{
+              textDecoration: "underline",
+            }}
+            bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+          >
+            Dashboard
           </MenuItem>
         </MenuList>
       </Menu>
     )
 }
 
-export default ServiceButton;
+export default ProductButton;

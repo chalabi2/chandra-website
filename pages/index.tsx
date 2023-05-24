@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Divider, Text, Stack, Container, Link, HStack, Spacer, Wrap, Image, useColorModeValue } from "@chakra-ui/react";
+import { Box, Divider, Text, Stack, Container, Link, HStack, Spacer, Wrap, Image, useColorModeValue, button } from "@chakra-ui/react";
 
 import Header from "../components/react/header";
 import Intro from "../components/react/intro";
@@ -11,7 +11,7 @@ export default function Home() {
     <>
           <Header />
 
-    <Container maxW="8xl" mt={2}>
+    <Container maxW="8xl">
       <Head>
         <title>Chandra Station</title>
         <meta name="description" content="Validator of the lunar god" />
@@ -87,12 +87,15 @@ export default function Home() {
         >
           Built with Cosmology
         </Link>
+        <Link href={"/contact"}>
         <Text
+              as={button}
               textAlign="center"
-              fontSize="xs"
+              fontSize={"lg"}
             >
-             Ⓒ CHANDRA STATION 2023
+             Contact Us
             </Text>
+            </Link>
       </HStack>
     </Container>
     </>

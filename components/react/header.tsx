@@ -30,6 +30,7 @@ import {
   import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
   import { useState } from "react";
   import ServiceButton from "./service-button";
+import { MdOutlineLineWeight } from "react-icons/md";
   
   const MenuItems = ({ stackType }) => {
     const StackComponent = stackType === "HStack" ? HStack : VStack;
@@ -171,7 +172,7 @@ import {
         <Button
           display={displayDarkModeButton}
           size={"sm"}
-          variant="outline"
+          variant="ghost"
           color={useColorModeValue("#013133", "#b5fdff")}
           px={2}
           mt={0}
@@ -180,6 +181,10 @@ import {
           onClick={toggleColorMode}
           _hover={{
             bgColor: hoverBgColor,
+          }}
+          sx={{
+            outlineColor: useColorModeValue("#013133", "#b5fdff"),
+            outlineWidth: "1px"
           }}
         >
           <Icon

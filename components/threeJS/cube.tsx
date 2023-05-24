@@ -77,7 +77,7 @@ const Model = () => {
 
 export default function LotusFlower() {
   
-  const flowerTop = useBreakpointValue({ base: "200px", md: "50px" });
+  const flowerTop = useBreakpointValue({ base: "100px", md: "50px" });
 const flowerLeft = useBreakpointValue({ base: "30px", md: "600px", sm: "100px",  });
 const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
 

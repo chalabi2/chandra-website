@@ -9,7 +9,9 @@ import {
     Divider,
     Box,
     Text,
+    Button,
   } from "@chakra-ui/react";
+import { useRouter } from "next/router";
   import {
     IoAnalyticsSharp,
     IoIdCardSharp,
@@ -22,10 +24,10 @@ import {
     const direction = useBreakpointValue({ base: "column", md: "row" });
     const servicesOrder = useBreakpointValue({ base: 0, sm: 0, md: 1 });
     const boxesOrder = useBreakpointValue({ base: 1, sm: 1, md: 0 });
-    
+    const router = useRouter();
   
     return (
-      <Box
+      <Box mt={useBreakpointValue({base: 0, md: -500})}
       >
         <Box position="relative" zIndex={1}>
           <Stack direction={direction} justifyContent={"space-between"}>
@@ -44,6 +46,7 @@ import {
               >
                 <HStack>
                   <Box
+                  onClick={() => router.push('/services?tabIndex=0')}
                     borderRadius={"10px"}
                     width="75px"
                     height="75px"
@@ -62,7 +65,7 @@ import {
                   </Box>
   
                   <VStack alignItems="start">
-                    <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
+                    <Text onClick={() => router.push('/services?tabIndex=0')} fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Public Endpoints
                     </Text>
                     <Text fontSize="sm">
@@ -99,6 +102,7 @@ import {
                 </HStack>
                 <HStack>
                   <Box
+                  onClick={() => router.push('/services?tabIndex=1')}
                     borderRadius={"10px"}
                     width="75px"
                     height="75px"
@@ -116,7 +120,7 @@ import {
                     </Icon>
                   </Box>
                   <VStack alignItems="start">
-                    <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
+                    <Text onClick={() => router.push('/services?tabIndex=1')} fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Snapshots
                     </Text>
                     <Text fontSize="sm">

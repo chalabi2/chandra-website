@@ -36,20 +36,20 @@ import { useState } from 'react';
 import { exponentiate, getExponent } from './staking';
 import { useChain } from '@cosmos-kit/react';
 import { cosmos } from 'interchain';
-import { getCoin } from '../../config/defaults';
+import { getCoin } from '../config/defaults';
 import { StdFee } from '@cosmjs/amino';
 import type {
   Validator,
   DelegationResponse as Delegation,
 } from 'interchain/types/codegen/cosmos/staking/v1beta1/staking';
-import { TransactionResult } from '../types';
+import { TransactionResult } from './types';
 import { ChainName } from '@cosmos-kit/core';
 import BigNumber from 'bignumber.js';
 import {
   useFeeEstimation,
   useInputBox,
   useTransactionToast,
-} from '../../hooks';
+} from '../hooks';
 
 const { delegate } = cosmos.staking.v1beta1.MessageComposer.fromPartial;
 

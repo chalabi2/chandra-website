@@ -91,7 +91,7 @@ import { getDelegators, getTvl } from "../queries/queries";
             maintains high uptime, bare metal machines.
           </Text>
         </Box>
-        <Box pb={-400} zIndex={1} ml={0} textAlign="center">
+        <Box zIndex={1} ml={0} textAlign="center">
           <Grid
             mt={10}
             templateColumns={statColumns}
@@ -152,7 +152,7 @@ import { getDelegators, getTvl } from "../queries/queries";
             gap={4}
           >
             <GridItem rowSpan={1} colSpan={1}>
-            <Flex p="2" width={400} textAlign={"left"} flexDirection="column" marginLeft={marginLeftFlex}>
+            <Flex mt={useBreakpointValue({base: 20, md: 0})} p="2" width={400} textAlign={"left"} flexDirection="column" marginLeft={marginLeftFlex}>
                 <Heading fontSize={{ base: "1xl", sm: "2xl", md: "3xl" }}>
                   Hardware
                 </Heading>
