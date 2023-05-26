@@ -39,10 +39,13 @@ const SkeletonOptions = () => {
 
 const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
   const menuHeight = useBreakpointValue({ base: 60, md: 56 });
+  const borderColor= useColorModeValue("#013133", "#b5fdff");
+
   const customStyles = {
     control: (provided: SystemStyleObject) => ({
       ...provided,
-      height: 12
+      height: 12,
+      borderColor: borderColor
     }),
     menu: (provided: SystemStyleObject) => ({
       ...provided,
@@ -51,6 +54,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
       mb: 0,
       bg: useColorModeValue("#b5fdff", "#013133"),
       boxShadow: useColorModeValue('0 1px 5px #013133', '0 0px 4px #b5fdff'),
+      borderColor: borderColor,
       borderRadius: '0.3rem'
     }),
     menuList: (provided: SystemStyleObject) => ({
@@ -102,6 +106,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
       return {
         ...provided,
         borderRadius: 'lg',
+        borderColor: borderColor,
         h: 14,
         color: 'inherit',
         bg: useColorModeValue(

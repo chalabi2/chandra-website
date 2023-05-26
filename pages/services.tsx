@@ -260,6 +260,9 @@ const ServicesPage = () => {
             </TabPanels>
           </Tabs>
         </VStack>
+        <Link
+        href={"/"}
+        >
         <Button
          _hover={{
           bgColor: buttonHover
@@ -271,6 +274,7 @@ const ServicesPage = () => {
       left={0}
       leftIcon={<IoArrowBack/>}
       >Back</Button>
+      </Link>
       </Container>
     </Box>
     </>

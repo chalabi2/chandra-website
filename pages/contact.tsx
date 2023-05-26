@@ -26,10 +26,43 @@ import {
   } from "react-icons/md"
   import { BsGithub, BsDiscord, BsPerson, BsTwitter } from "react-icons/bs"
 import Header from "../components/react/header"
+import { useState } from 'react';
+import axios from 'axios';
+import { useToast } from "@chakra-ui/react";
   
   export default function Contact() {
 
     const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
+
+    const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+const [message, setMessage] = useState('');
+
+const toast = useToast();
+// rest of your code
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+      const response = await axios.post('/api/sendEmail', { name, email, message });
+      toast({
+        title: "Message Sent",
+        description: "Your message was sent successfully.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+  } catch (error) {
+      toast({
+        title: "Error Sending Message",
+        description: error.response?.data || "An unexpected error occurred.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+  }
+}
     
     return (
         <>
@@ -133,60 +166,34 @@ import Header from "../components/react/header"
       borderRadius="lg"
       borderColor={useColorModeValue("#013133", "#b5fdff")}>
                     <Box m={8} color="#0B0E3F">
-                      <VStack spacing={5}>
-                        <FormControl id="name">
-                          <FormLabel
-                          color={useColorModeValue("#013133", "#b5fdff")}
-                          >Your Name</FormLabel>
-                          <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
-                            <InputLeftElement
-                              pointerEvents="none"
-                              children={<BsPerson color={useColorModeValue("#013133", "#b5fdff")} />}
-                            />
-                            <Input color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" _active={{
-                                borderColor: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")
-                            }} />
-                          </InputGroup>
-                        </FormControl>
-                        <FormControl id="name">
-                          <FormLabel
-                          color={useColorModeValue("#013133", "#b5fdff")}
-                          >Email</FormLabel>
-                          <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
-                            <InputLeftElement
-                              pointerEvents="none"
-                              children={<MdOutlineEmail color={useColorModeValue("#013133", "#b5fdff")}/>}
-                            />
-                            <Input color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" />
-                          </InputGroup>
-                        </FormControl>
-                        <FormControl id="name">
-                          <FormLabel
-                          color={useColorModeValue("#013133", "#b5fdff")}
-                          >Message</FormLabel>
-                          <Textarea
-                          color={useColorModeValue("#013133", "#b5fdff")}
-                            borderColor={useColorModeValue("#013133", "#b5fdff")}
-                            _hover={{
-                              borderRadius: useColorModeValue("#013133", "#b5fdff")
-                            }}
-                          />
-                        </FormControl>
-                        <FormControl id="name" float="right">
-                          <Button
-                            variant="solid"
-                            color={useColorModeValue("#b5fdff", "#013133")}
-                            sx={{
-                                background: useColorModeValue("#013133", "#b5fdff")
-                            }}
-                            _hover={{
-                                bgColor: hoverBgColor,
-                              }}
-                          >
-                            Send Message
-                          </Button>
-                        </FormControl>
-                      </VStack>
+                      <VStack as="form" onSubmit={handleSubmit} spacing={5}>
+    <FormControl id="name">
+        <FormLabel color={useColorModeValue("#013133", "#b5fdff")}>Your Name</FormLabel>
+        <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
+            <InputLeftElement pointerEvents="none" children={<BsPerson color={useColorModeValue("#013133", "#b5fdff")} />} />
+            <Input value={name} onChange={(e) => setName(e.target.value)} color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" />
+        </InputGroup>
+    </FormControl>
+
+    <FormControl id="email">
+        <FormLabel color={useColorModeValue("#013133", "#b5fdff")}>Email</FormLabel>
+        <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
+            <InputLeftElement pointerEvents="none" children={<MdOutlineEmail color={useColorModeValue("#013133", "#b5fdff")}/>} />
+            <Input value={email} onChange={(e) => setEmail(e.target.value)} color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" />
+        </InputGroup>
+    </FormControl>
+
+    <FormControl id="message">
+        <FormLabel color={useColorModeValue("#013133", "#b5fdff")}>Message</FormLabel>
+        <Textarea value={message} onChange={(e) => setMessage(e.target.value)} color={useColorModeValue("#013133", "#b5fdff")} borderColor={useColorModeValue("#013133", "#b5fdff")} />
+    </FormControl>
+
+    <FormControl id="submit">
+        <Button type="submit" variant="solid" color={useColorModeValue("#b5fdff", "#013133")} sx={{ background: useColorModeValue("#013133", "#b5fdff") }} _hover={{ bgColor: hoverBgColor }}>
+            Send Message
+        </Button>
+    </FormControl>
+</VStack>
                     </Box>
                   </Box>
                 </WrapItem>

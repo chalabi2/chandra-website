@@ -304,17 +304,28 @@ const AllValidators = ({
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th></Th>
-              <Th>Voting Power</Th>
-              <Th>Commission</Th>
-              <Th>APR</Th>
+              <Th
+              borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+              ></Th>
+              <Th
+              borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+              >Voting Power</Th>
+              <Th
+              borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+              >Commission</Th>
+              <Th
+              borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+              >APR</Th>
             </Tr>
           </Thead>
 
           <Tbody>
             {validators.map((validator: Validator, index: "number") => (
               <Tr key={validator?.description?.moniker}>
-                <Td>
+                <Td
+                borderTopColor={useColorModeValue("#013133", "#b5fdff")}
+                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                >
                   <Box
                     display="flex"
                     alignItems="center"
@@ -329,14 +340,18 @@ const AllValidators = ({
                     <Text>{validator?.description?.moniker}</Text>
                   </Box>
                 </Td>
-                <Td>
+                <Td
+                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                >
                   {Math.floor(
                     exponentiate(validator.tokens, -exp)
                   ).toLocaleString()}
                   &nbsp;
                   <Token color="blackAlpha.800" token={coin.symbol} />
                 </Td>
-                <Td>
+                <Td
+                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                >
                   {validator.commission?.commissionRates?.rate &&
                     exponentiate(
                       validator.commission.commissionRates.rate,
@@ -344,7 +359,9 @@ const AllValidators = ({
                     ).toFixed(0)}
                   %
                 </Td>
-                <Td>
+                <Td
+                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                >
                   <Box width="100%" display="flex" alignItems="center">
                     {/* <Text>{validator.apr}</Text> */}
                     <Text>22.04%</Text>

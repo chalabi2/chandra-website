@@ -8,14 +8,24 @@ import {
     Box,
     Text,
     useColorMode,
+    Skeleton,
+    SkeletonCircle,
   } from "@chakra-ui/react";
   import LotusFlower from "../threeJS/cube";
+  import { useState } from "react"
 
   import { useBreakpointValue } from "@chakra-ui/react";
   
   function Intro() {
 
     const flexDirection = useBreakpointValue({ base: "column", md: "row" });
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    const handleLoad = () => {
+        // Set loading to false when the LotusFlower component has loaded
+        setIsLoading(false);
+    };
 
 
     return (
@@ -40,8 +50,7 @@ import {
                 shadow={"dark-lg"}
                 borderRadius={"4px"}
                 bgColor={useColorModeValue("#c4fdff", "#012729")}
-                p={4}
-                zIndex={1} textAlign="center">
+                p={4} textAlign="center">
                   <Heading
                     zIndex={0}
                     textAlign={"left"}
@@ -78,7 +87,7 @@ import {
                   </Text>
                 </Box>
               </VStack>
-              <LotusFlower />
+                        <LotusFlower onLoad={handleLoad} />
             </HStack>
           </Box>
         </Box>

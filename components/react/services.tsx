@@ -228,7 +228,7 @@ import { useRouter } from "next/router";
                     fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}
                   >
                     With focus on infrastructure as a service, front end/back end
-                    development, and blockchain development we are able to provide
+                    development, and blockchain we are able to provide
                     a wide array of services to our clients and partners.
                   </Text>
                 </Box>

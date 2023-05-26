@@ -24,6 +24,9 @@ export const ConnectWalletButton = ({
       opacity={1}
       transition="all .5s ease-in-out"
       onClick={onClickConnectBtn}
+      _hover={{
+        bgColor: useColorModeValue("rgba(0, 0, 0, 0.2)", "rgba(255, 255, 255, 0.2)")
+      }}
     >
       <Icon as={icon ? icon : IoWallet} mr={2} />
       {buttonText ? buttonText : 'Connect Wallet'}
