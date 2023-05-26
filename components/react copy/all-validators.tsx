@@ -225,7 +225,7 @@ const AllValidators = ({
   return (
     <>
       <Heading as="h4" size="md" mt={12} mb={6}>
-        All Validators
+        Validator Info
       </Heading>
 
       <Modal isOpen={isOpen} onClose={onModalClose} size="2xl" isCentered>
@@ -304,7 +304,7 @@ const AllValidators = ({
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Validator</Th>
+              <Th></Th>
               <Th>Voting Power</Th>
               <Th>Commission</Th>
               <Th>APR</Th>
@@ -312,7 +312,7 @@ const AllValidators = ({
           </Thead>
 
           <Tbody>
-            {validators.map((validator: Validator, index: number) => (
+            {validators.map((validator: Validator, index: "number") => (
               <Tr key={validator?.description?.moniker}>
                 <Td>
                   <Box
@@ -321,7 +321,6 @@ const AllValidators = ({
                     maxWidth={280}
                     overflowX="hidden"
                   >
-                    <Text mr={4}>{index + 1}</Text>
                     <Thumbnail
                       identity={validator.description?.identity}
                       name={validator.description?.moniker}

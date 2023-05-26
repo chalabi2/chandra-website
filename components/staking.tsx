@@ -247,9 +247,13 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
       },
     });
 
-    const allValidators = validators.sort((a, b) =>
-      new BigNumber(b.tokens).minus(new BigNumber(a.tokens)).toNumber()
-    );
+// Filter validators to only include Chandra Station
+const chandraStationValidator = validators.filter(validator => validator.description?.moniker === 'Chandra Station');
+
+// Sort and use filtered validators
+const allValidators = chandraStationValidator.sort((a, b) =>
+  new BigNumber(b.tokens).minus(new BigNumber(a.tokens)).toNumber()
+);
 
     // DELEGATIONS
     const { delegationResponses: delegations } =
@@ -304,11 +308,14 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
 
   return (
     <Box 
+    maxW={"8xl"}
     shadow={"dark-lg"}
     borderRadius={"4px"}
     bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
     p={4}
-    my={14}>
+    mt="-305px"
+    minH={"365px"}
+    >
       <SkeletonText
         isLoaded={!isLoading}
         mt="0"

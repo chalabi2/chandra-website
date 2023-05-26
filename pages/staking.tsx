@@ -13,6 +13,7 @@ import {
   Icon,
   useColorMode,
   useColorModeValue,
+  HStack,
 } from '@chakra-ui/react';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import {
@@ -35,14 +36,28 @@ export default function Staking() {
   return (
     <>
     <Header/>
-    <Container maxW="5xl" py={10}>
+    <Container
+     maxW="8xl" py={40}>
+        <HStack
+        spacing={5}
+        >
+            <Box
+            w="2xl"
+            h="2xl"
+            >
       <WalletSection
         isMultiChain={true}
         providedChainName={selectedChainName}
         setChainName={setChainName}
       />
-      <Divider />
+      </Box>
+      <Box
+      w="6xl"
+      maxH="1000px"
+      >
       {selectedChainName && <StakingSection chainName={selectedChainName} />}
+      </Box>
+      </HStack>
     </Container>
     </>
   );

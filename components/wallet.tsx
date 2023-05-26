@@ -158,7 +158,7 @@ export const WalletSection = ({
   );
 
   return (
-    <Center py={16}>
+    <Center>
       <Grid
        shadow={"dark-lg"}
        borderRadius={"4px"}

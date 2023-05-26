@@ -94,7 +94,11 @@ import { MdOutlineLineWeight } from "react-icons/md";
     const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
   
     return (
-      <Box p={2} w="100%" borderRadius={4} zIndex={10} top="0" position="sticky" bgColor={useColorModeValue("rgba(181, 253, 255, 0.75)", "rgba(1, 49, 51, 0.75)")}>
+      <Box
+      sx={{
+        backdropFilter: 'blur(10px)',
+      }}
+      p={2} w="100%" borderRadius={4} zIndex={10} top="0" position="sticky" bgColor={useColorModeValue("rgba(181, 253, 255, 0.75)", "rgba(1, 49, 51, 0.75)")}>
       <Flex
         maxW="8xl"
         mx="auto" // this centers the Flex on the page

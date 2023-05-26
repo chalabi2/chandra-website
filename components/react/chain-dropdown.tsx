@@ -230,6 +230,8 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
     );
   };
 
+  const allowedChains = ['Akash', 'Chihuahua', 'Comdex'];
+
   return (
     <AsyncSelect
       id="select-chain"
@@ -248,7 +250,11 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
         const searcher = new Searcher(data, {
           keySelector: (obj) => obj.label
         });
-        callback(searcher.search(inputValue));
+        const results = searcher.search(inputValue);
+        const filteredResults = results.filter(option => {
+          return allowedChains.includes(option.label); 
+        });
+        callback(filteredResults);
       }}
       onChange={onChange}
       components={{

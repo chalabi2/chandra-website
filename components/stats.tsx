@@ -86,7 +86,7 @@ import { useFeeEstimation, useTransactionToast } from '../hooks';
       <StatGroup>
         <Stat py={2} minWidth="200px">
           <StatLabel
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             fontWeight="semibold"
             fontSize="md"
           >
@@ -100,28 +100,32 @@ import { useFeeEstimation, useTransactionToast } from '../hooks';
   
         <Stat py={2} minWidth="200px">
           <StatLabel
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             fontWeight="semibold"
             fontSize="md"
           >
             Available Balance
           </StatLabel>
-          <StatNumber>
-            {balance} <Token token={coin.symbol} />
+          <StatNumber
+          color={useColorModeValue("#013133", "#b5fdff")}
+          >
+            {balance} <Token color={useColorModeValue("#013133", "#b5fdff")} token={coin.symbol} />
           </StatNumber>
         </Stat>
   
         <Stat py={2} minWidth="200px">
           <StatLabel
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             fontWeight="semibold"
             fontSize="md"
           >
             Staked Amount
           </StatLabel>
-          <StatNumber>
+          <StatNumber
+          color={useColorModeValue("#013133", "#b5fdff")}
+          >
             {staked === 0 ? staked : staked.toFixed(6)}&nbsp;
-            <Token token={coin.symbol} />
+            <Token color={useColorModeValue("#013133", "#b5fdff")} token={coin.symbol} />
           </StatNumber>
         </Stat>
   
@@ -134,7 +138,7 @@ import { useFeeEstimation, useTransactionToast } from '../hooks';
           minWidth="200px"
         >
           <StatLabel
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             fontWeight="semibold"
             fontSize="md"
           >
@@ -143,7 +147,7 @@ import { useFeeEstimation, useTransactionToast } from '../hooks';
           <StatNumber>
             {totalReward}&nbsp;
             <Token
-              color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+              color={useColorModeValue("#013133", "#b5fdff")}
               token={coin.symbol}
             />
           </StatNumber>
