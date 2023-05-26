@@ -48,7 +48,7 @@ import { MdOutlineLineWeight } from "react-icons/md";
 </Link>
 <Link href={"/staking"}>
         <Button
-        variant={"outline"}
+        variant={"ghost"}
           fontSize="lg"
           colorScheme={useColorModeValue("#b5fdff", "#013133")}
           size={"sm"}

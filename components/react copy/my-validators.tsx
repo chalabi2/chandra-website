@@ -712,9 +712,7 @@ const MyValidators = ({
                         setMaxRedelegateAmount(validator.staked);
                         onValidatorModalOpen();
                       }}
-                      color={
-                        colorMode === 'light' ? 'purple.600' : 'purple.200'
-                      }
+                      color={useColorModeValue("#013133", "#b5fdff")}
                     >
                       Manage
                       <Icon as={IoArrowForward} />

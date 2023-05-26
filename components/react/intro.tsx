@@ -25,7 +25,8 @@ import {
           width="100%" // Make the container span the full width
           py={0}
         >
-          <Box position="relative" zIndex={1}>
+          <Box 
+          position="relative" zIndex={1}>
             <HStack
   maxH="600px"
   alignContent={"center"}
@@ -34,8 +35,13 @@ import {
   justifyContent="center"
   flexDirection={flexDirection}
 >
-              <VStack mt={200} maxH="600px">
-                <Box zIndex={1} textAlign="center">
+              <VStack mt={400} maxH="600px">
+                <Box 
+                shadow={"dark-lg"}
+                borderRadius={"4px"}
+                bgColor={useColorModeValue("#c4fdff", "#012729")}
+                p={4}
+                zIndex={1} textAlign="center">
                   <Heading
                     zIndex={0}
                     textAlign={"left"}

@@ -49,8 +49,8 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
       h: menuHeight,
       mt: 4,
       mb: 0,
-      bg: useColorModeValue('white', 'gray.900'),
-      boxShadow: useColorModeValue('0 1px 5px #e3e3e3', '0 0px 4px #4b4b4b'),
+      bg: useColorModeValue("#b5fdff", "#013133"),
+      boxShadow: useColorModeValue('0 1px 5px #013133', '0 0px 4px #b5fdff'),
       borderRadius: '0.3rem'
     }),
     menuList: (provided: SystemStyleObject) => ({
@@ -158,7 +158,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
             spacing={3}
             overflow="hidden"
             wordBreak="break-word"
-            color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             w="full"
           >
             <Box
@@ -169,10 +169,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
               w="full"
               h="full"
               border="1px solid"
-              borderColor={useColorModeValue(
-                'blackAlpha.200',
-                'whiteAlpha.200'
-              )}
+              borderColor={useColorModeValue("#013133", "#b5fdff")}
               borderRadius="full"
               overflow="hidden"
             >
@@ -204,7 +201,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
           spacing={3}
           overflow="hidden"
           wordBreak="break-word"
-          color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}
+          color={useColorModeValue("#013133", "#b5fdff")}
           w="full"
         >
           <Box
@@ -215,7 +212,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
             w="full"
             h="full"
             border="1px solid"
-            borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.200')}
+            borderColor={useColorModeValue("#b5fdff", "#013133")}
             borderRadius="full"
             overflow="hidden"
           >

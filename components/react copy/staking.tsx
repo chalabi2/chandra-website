@@ -233,8 +233,11 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
 
     const totalReward = Number(exponentiate(reward, -exp).toFixed(6));
 
+    const targetMoniker = 'Chandra Station';
+
     // ALL VALIDATORS
-    const { validators } = await client.cosmos.staking.v1beta1.validators({
+    let { validators: allValidators } =
+    await client.cosmos.staking.v1beta1.validators({
       status: cosmos.staking.v1beta1.bondStatusToJSON(
         cosmos.staking.v1beta1.BondStatus.BOND_STATUS_BONDED
       ),
@@ -247,9 +250,8 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
       },
     });
 
-    const allValidators = validators.sort((a, b) =>
-      new BigNumber(b.tokens).minus(new BigNumber(a.tokens)).toNumber()
-    );
+    allValidators = allValidators.filter(validator => validator.description?.moniker === targetMoniker);
+
 
     // DELEGATIONS
     const { delegationResponses: delegations } =

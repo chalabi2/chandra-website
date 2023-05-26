@@ -25,6 +25,7 @@ import {
   Image,
   useColorMode,
   Center,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import {
   DelegateWarning,
@@ -230,10 +231,14 @@ const AllValidators = ({
       <Modal isOpen={isOpen} onClose={onModalClose} size="2xl" isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Validator</ModalHeader>
+          <ModalHeader
+          bgColor={useColorModeValue("#b5fdff", "#013133")}
+          >Validator</ModalHeader>
           <ModalCloseButton />
 
-          <ModalBody>
+          <ModalBody
+          bgColor={useColorModeValue("#b5fdff", "#013133")}
+          >
             <ValidatorInfo
               imgUrl={
                 currentValidator
@@ -255,7 +260,9 @@ const AllValidators = ({
               description={currentValidator?.description?.details || ''}
             />
             <DelegateWarning unbondingDays={unbondingDays} />
-            <Stack direction="row" spacing={4} my={4}>
+            <Stack 
+            bgColor={useColorModeValue("#b5fdff", "#013133")}
+            direction="row" spacing={4} my={4}>
               <StatBox
                 label="Your Delegation"
                 token={coin.symbol}
@@ -278,9 +285,11 @@ const AllValidators = ({
             )}
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter
+          bgColor={useColorModeValue("#b5fdff", "#013133")}
+          >
             <Button
-              colorScheme="primary"
+              color={useColorModeValue("#013133", "#b5fdff")}
               onClick={onDelegateClick}
               isDisabled={isAmountZero || isDelegating || isSimulating}
               isLoading={isDelegating}
@@ -348,7 +357,7 @@ const AllValidators = ({
                         setCurrentValidator(validator);
                       }}
                       color={
-                        colorMode === 'light' ? 'purple.600' : 'purple.200'
+                        useColorModeValue("#013133", "#b5fdff")
                       }
                     >
                       Manage

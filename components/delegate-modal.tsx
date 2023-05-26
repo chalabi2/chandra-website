@@ -138,9 +138,9 @@ export const StatBox = ({
   return (
     <Box
       borderRadius={10}
-      bgColor={useColorModeValue('gray.50', 'gray.600')}
+      bgColor={useColorModeValue("#b5fdff", "#013133")}
       border="1px solid"
-      borderColor="blackAlpha.200"
+      borderColor={useColorModeValue("#013133", "#b5fdff")}
       width="100%"
       padding="30px 40px"
       display="flex"

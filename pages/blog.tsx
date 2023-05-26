@@ -21,6 +21,8 @@ import { IoArrowBack } from 'react-icons/io5';
 const BlogPost = ({ title, author, date, content }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
+
   const handleExpansion = () => {
     setIsExpanded(!isExpanded);
   };
@@ -30,11 +32,11 @@ const BlogPost = ({ title, author, date, content }) => {
   return (
 
     <VStack
-    mt={10}
+    mt={0}
       spacing={4}
       borderWidth={1}
       borderRadius="lg"
-      borderColor="gray.700"
+      borderColor={useColorModeValue("#013133", "#b5fdff")}
       p={4}
       w="100%"
       overflowWrap="break-word"
@@ -52,10 +54,44 @@ const BlogPost = ({ title, author, date, content }) => {
         <Text color={useColorModeValue("#013133", "#b5fdff")}>{author}</Text>
         <Text color={useColorModeValue("#013133", "#b5fdff")}>{date}</Text>
       </HStack>
-      <Box color="gray.300" overflow="scroll" wordWrap="break-word" width="100%">
-  <ReactMarkdown children={isExpanded ? content : snippet} />
+      <Box
+      maxH="400px"
+      sx={{
+        scrollbarWidth: 'auto',
+      scrollbarColor: useColorModeValue(
+        'rgba(0,0,0,0.3) rgba(0,0,0,0.2)',
+        'rgba(255,255,255,0.2) rgba(255,255,255,0.1)'
+      ),
+      // For Chrome and other browsers except Firefox
+      '&::-webkit-scrollbar': {
+        width: '14px',
+        background: useColorModeValue(
+          'rgba(220,220,220,0.1)',
+          'rgba(60,60,60,0.1)'
+        ),
+        borderRadius: '3px'
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: useColorModeValue(
+          'rgba(0,0,0,0.1)',
+          'rgba(255,255,255,0.1)'
+        ),
+        borderRadius: '10px',
+        border: '3px solid transparent',
+        backgroundClip: 'content-box'
+      }
+      }}
+      color={useColorModeValue("#013133", "#b5fdff")} overflow="scroll" wordWrap="break-word" width="100%">
+  <ReactMarkdown className='markdown'  children={isExpanded ? content : snippet} />
 </Box>
-      <Button onClick={handleExpansion} color={useColorModeValue("#013133", "#b5fdff")}>
+      <Button 
+      bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+      onClick={handleExpansion} color={useColorModeValue("#013133", "#b5fdff")}
+      _hover={{
+bgColor: buttonHover
+        
+      }}
+      >
         {isExpanded ? 'Show Less' : 'Read'}
       </Button>
     </VStack>
@@ -84,7 +120,8 @@ const ArticleList = () => {
       Leaving the ecosystem with one useable front end for bridging to and from gravity, blockscape's portal.
       Gravity bridge portal is the premier option and will continue to be, 
       but it was heavily apparent relying on one port of entry is not scale-able and 
-      did not support the ethos of gravitybridge. Space station did not support the newly released fee, chain fees.
+      did not support the ethos of gravitybridge. Space station did not support 
+      the newly released fee, chain fees.
       It also did not calculate a proper bridge fee from 
       ethereum gas markets, instead relying on hard coded amounts for different speeds.
       This resulted in inaccurate pricing and conversions not
@@ -128,6 +165,8 @@ const ArticleList = () => {
     }
   ];
 
+  const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
+
   return (
     <>
     <Head>
@@ -136,10 +175,18 @@ const ArticleList = () => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles.css" />
       </Head>
-    <Box minH="100vh" bg={useColorModeValue("#b5fdff", "#013133")}>
+    <Box 
+    minH="100vh" bg={useColorModeValue("#b5fdff", "#013133")}>
         <Header/>
-      <Container maxW="container.lg" pt={10}>
-        <VStack spacing={8} w="100%">
+      <Container 
+      
+      maxW="container.lg" pt={10}>
+        <VStack 
+        shadow={"dark-lg"}
+        borderRadius={"4px"}
+        bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
+        p={4}
+        spacing={8} w="100%">
           {samplePosts.map((post, index) => (
             <BlogPost
               key={index}
@@ -152,6 +199,11 @@ const ArticleList = () => {
         </VStack>
         <Link href={"/"}>
         <Button
+        bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+              _hover={{
+                bgColor: buttonHover
+                        
+                      }}
         my={20}
       bottom={0}
       left={0}

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
 import { useChain } from '@cosmos-kit/react';
-import { Box, SkeletonText } from '@chakra-ui/react';
+import { Box, SkeletonText, useColorModeValue } from '@chakra-ui/react';
 import { cosmos } from 'interchain';
 import BigNumber from 'bignumber.js';
 import { decodeCosmosSdkDecFromProto } from '@cosmjs/stargate';
@@ -303,7 +303,12 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
   }, [getData]);
 
   return (
-    <Box my={14}>
+    <Box 
+    shadow={"dark-lg"}
+    borderRadius={"4px"}
+    bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
+    p={4}
+    my={14}>
       <SkeletonText
         isLoaded={!isLoading}
         mt="0"

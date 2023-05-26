@@ -10,6 +10,7 @@ import {
     Icon,
     Box,
     Text,
+    SkeletonText,
   } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
   import {
@@ -53,7 +54,12 @@ import { getDelegators, getTvl } from "../queries/queries";
   
     return (
       <VStack className="background-image-container2">
-        <Box mt={useBreakpointValue({base: "400", md: "600" })} zIndex={1} ml={0} textAlign="center">
+        <Box 
+        shadow={"dark-lg"}
+        borderRadius={"4px"}
+        bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
+        p={4}
+        mt={useBreakpointValue({base: "400", md: "800px" })} zIndex={1} ml={0} textAlign="center">
           <Heading
             zIndex={0}
             textAlign={"center"}
@@ -106,9 +112,15 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
-                  ${tvl}
-                </Text>
+                <SkeletonText 
+                noOfLines={1}
+                skeletonHeight="10"
+                skeletonWidth="1"
+                isLoaded={tvl !== 0}>
+  <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
+    ${tvl}
+  </Text>
+</SkeletonText>
               </Flex>
             </GridItem>
             <GridItem>
@@ -119,7 +131,17 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>{totalStakers}</Text>
+                <SkeletonText 
+                 mt="0"
+                 noOfLines={1}
+                 spacing="0"
+                 skeletonHeight="10"
+                 skeletonWidth="1"
+                isLoaded={totalStakers !== 0}>
+  <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
+    {totalStakers}
+  </Text>
+</SkeletonText>
               </Flex>
             </GridItem>
             <GridItem>

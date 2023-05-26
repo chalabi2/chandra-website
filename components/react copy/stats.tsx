@@ -130,7 +130,7 @@ const Stats = ({
         pos="relative"
         py={2}
         px={4}
-        bgColor={useColorModeValue('purple.50', 'purple.700')}
+        bgColor={useColorModeValue("#013133", "#b5fdff")}
         borderRadius={10}
         minWidth="200px"
       >
@@ -152,7 +152,7 @@ const Stats = ({
           pos="absolute"
           right={4}
           top={5}
-          colorScheme="purple"
+          colorScheme={useColorModeValue("#013133", "#b5fdff")}
           size="sm"
           onClick={onClaimClick}
           isDisabled={!Number(totalReward)}

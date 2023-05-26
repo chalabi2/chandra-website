@@ -27,7 +27,9 @@ import { useRouter } from "next/router";
     const router = useRouter();
   
     return (
-      <Box mt={useBreakpointValue({base: 0, md: -500})}
+      <Box 
+
+      mt={useBreakpointValue({base: 0, md: -300})}
       >
         <Box position="relative" zIndex={1}>
           <Stack direction={direction} justifyContent={"space-between"}>
@@ -184,9 +186,15 @@ import { useRouter } from "next/router";
                 </HStack>
               </VStack>
             </VStack>
-            <Box>
-              <VStack order={servicesOrder} justifyContent={"end"}>
-                <Box mt={200} zIndex={1} textAlign="center">
+            <Box
+            >
+              <VStack 
+              order={servicesOrder} justifyContent={"end"}>
+                <Box p={4}
+                shadow={"dark-lg"}
+                                            borderRadius={"4px"}
+                                            bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
+                mt={200} zIndex={1} textAlign="center">
                   <Heading
                     zIndex={0}
                     textAlign={"right"}

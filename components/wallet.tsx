@@ -7,6 +7,7 @@ import {
   Icon,
   Stack,
   useColorMode,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
@@ -147,7 +148,7 @@ export const WalletSection = ({
   );
 
   const userInfo = username && (
-    <ConnectedUserInfo username={username} icon={<Astronaut />} />
+    <ConnectedUserInfo username={username}/>
   );
   const addressBtn = (
     <CopyAddressBtn
@@ -159,6 +160,10 @@ export const WalletSection = ({
   return (
     <Center py={16}>
       <Grid
+       shadow={"dark-lg"}
+       borderRadius={"4px"}
+       bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
+       p={4}
         w="full"
         maxW="sm"
         templateColumns="1fr"
@@ -184,11 +189,11 @@ export const WalletSection = ({
               justifyContent="center"
               alignItems="center"
               borderRadius="lg"
-              bg={colorMode === 'light' ? 'white' : 'blackAlpha.400'}
+              borderColor={useColorModeValue("#013133", "#b5fdff")}
               boxShadow={
                 colorMode === 'light'
-                  ? '0 0 2px #dfdfdf, 0 0 6px -2px #d3d3d3'
-                  : '0 0 2px #363636, 0 0 8px -2px #4f4f4f'
+                  ? '0 0 2px #013133, 0 0 6px -2px #b5fdff'
+                  : '0 0 2px #b5fdff, 0 0 8px -2px #013133'
               }
               spacing={4}
               px={4}

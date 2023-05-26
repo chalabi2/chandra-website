@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputRightElement,
   Button,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { StatBox } from '../components/delegate-modal';
 
@@ -28,7 +29,10 @@ export const InputBox = ({
     token={token}
     input={
       <InputGroup mt={2}>
-        <Input type="number" value={value} onChange={onChange} />
+        <Input 
+        
+        borderColor={useColorModeValue("#013133", "#b5fdff")}
+        type="number" value={value} onChange={onChange} />
         <InputRightElement
           mr={3}
           width={24}
