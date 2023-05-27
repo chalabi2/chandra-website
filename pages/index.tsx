@@ -18,7 +18,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles.css" />
       </Head>
+      <Box
+      mt={-120}
+      >
       <Intro />
+      </Box>
       <Validating />
       <Services />
       <Box mb={5}>

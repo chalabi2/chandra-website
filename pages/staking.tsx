@@ -33,21 +33,19 @@ export default function Staking() {
   const [selectedChainName, setChainName] = useState<ChainName | undefined>(
     defaultChainName
   );
-
   const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
 
   return (
     <>
     <Header/>
     <Container
-     maxW="8xl" py={60}>
+     maxW="8xl" py={40}>
         <HStack
         spacing={5}
         >
             <Box
             w="2xl"
             h="2xl"
-            mt="-125px"
             >
       <WalletSection
         isMultiChain={true}
@@ -57,25 +55,22 @@ export default function Staking() {
       </Box>
       <Box
       w="6xl"
-      maxH="1000px"
       >
       {selectedChainName && <StakingSection chainName={selectedChainName} />}
       </Box>
       </HStack>
-      <Link
-        href={"/"}
-        >
+      <Link href={"/"}>
         <Button
-         _hover={{
-          bgColor: buttonHover
-                  
-                }}
-        my={20}
         bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+              _hover={{
+                bgColor: buttonHover
+                        
+                      }}
+        my={20}
       bottom={0}
       left={0}
       leftIcon={<IoArrowBack/>}
-      >Back</Button>
+      >Home</Button>
       </Link>
     </Container>
     </>

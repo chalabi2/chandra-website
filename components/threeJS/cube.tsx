@@ -18,7 +18,7 @@ const Model = ({ setIsLoading }: { setIsLoading: (isLoading: boolean) => void })
   const { active, progress, total } = useProgress();
   const meshRef = useRef<THREE.Object3D | null>(null);
 
-  const scale = useBreakpointValue({ base: 0.3, md: 0.55 });
+  const scale = useBreakpointValue({ base: 0.0 , md: 0.55 });
 
   const { actions, mixer } = useAnimations(animations || [], meshRef);
 
@@ -70,7 +70,7 @@ const Model = ({ setIsLoading }: { setIsLoading: (isLoading: boolean) => void })
 }, [scene, actions, mixer, scale]);
 
   useFrame((state, delta) => {
-    scene.rotation.y += 0.0007;
+
   });
   
 
@@ -94,7 +94,7 @@ export default function LotusFlower({ onLoad }: { onLoad: () => void }) {
 
 
   
-  const flowerTop = useBreakpointValue({ base: "100px", md: "140px" });
+  const flowerTop = useBreakpointValue({ base: "125px", md: "140px" });
 const flowerLeft = useBreakpointValue({ base: "30px", md: "700px", sm: "100px",  });
 const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
 
@@ -112,7 +112,7 @@ const flowerSize = useBreakpointValue({ base: "400px", md: "800px" });
         }}
       >
         <ambientLight />
-        <pointLight position={[10, 10, 10]} shadow />
+        <pointLight position={[-20, -80, 10]} shadow />
         <Model setIsLoading={setIsLoading} />
       </Canvas>
     </Box>

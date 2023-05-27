@@ -1,7 +1,4 @@
 import axios from "axios";
-import NodeCache from "node-cache";
-
-const cache = new NodeCache({ stdTTL: 60 * 60 * 24, checkperiod: 120 });
 
 const networks = [
     { 
@@ -81,13 +78,6 @@ const networks = [
 
 export async function getDelegators() {
 
-    const cacheKey = "delegators";
-    // Check cache
-    const cachedData = cache.get(cacheKey);
-    if (cachedData) {
-        return cachedData;
-    }
-
    const requests = networks.map(({ baseURL, valoperAddress, name }) => {
         return axios.get(`${baseURL}/cosmos/staking/v1beta1/validators/${valoperAddress}/delegations`)
             .catch((error) => {
@@ -101,9 +91,7 @@ export async function getDelegators() {
     const total = responses.reduce((sum, response) => {
         return sum + Number(response.data.pagination.total);
     }, 0);
-    const formattedTotal = Intl.NumberFormat('en-US').format(total);
-    cache.set(cacheKey, formattedTotal);
-    return formattedTotal
+    return Intl.NumberFormat('en-US').format(total);
 }
 
 
@@ -113,14 +101,6 @@ async function getUptime() {
 }
 
 export async function getTvl() {
-
-    const cacheKey = "tvl";
-    // Check cache
-    const cachedData = cache.get(cacheKey);
-    if (cachedData) {
-        return cachedData;
-    }
-
     const requests = networks.map(({ baseURL, valoperAddress, name, decimal }) => {
         return axios.get(`${baseURL}/cosmos/staking/v1beta1/validators/${valoperAddress}`)
             .then(response => ({ name, tokens: BigInt(response.data.validator.tokens) / BigInt(Math.pow(10, decimal)) }))
@@ -139,7 +119,7 @@ export async function getTvl() {
 
     const valueRequests = networks.map(({ name }) => {
         if(name === 'canto') {
-            const cantoPrice = 0.148071; // Update this with the current price
+            const cantoPrice = 0.148071;
             return Promise.resolve({ name, value: tokensByNetwork[name] * cantoPrice });
         }
         return axios.get(`https://api-osmosis.imperator.co/tokens/v2/price/${name}`)
@@ -156,7 +136,6 @@ export async function getTvl() {
         return acc + value;
     }, 0);
 
-    const formattedTvl = Intl.NumberFormat('en-US').format(totalValue);
-    cache.set(cacheKey, formattedTvl);
-    return formattedTvl
+    console.log(totalValue);
+    return Intl.NumberFormat('en-US').format(totalValue);
 }

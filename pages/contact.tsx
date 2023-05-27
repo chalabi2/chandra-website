@@ -125,6 +125,11 @@ const handleSubmit = async (e) => {
                       px={5}
                       alignItems="flex-start"
                     >
+                        <Link
+                        href="https://twitter.com/ChandraStation"
+                        target="_blank"
+                rel="noopener noreferrer"
+                        >
                       <IconButton
                         aria-label="twitter"
                         variant="ghost"
@@ -134,6 +139,12 @@ const handleSubmit = async (e) => {
                         _hover={{ bg: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)") }}
                         icon={<BsTwitter size="28px" />}
                       />
+                      </Link>
+                      <Link
+                      href="https://github.com/ChandraStation"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >
                       <IconButton
                         aria-label="github"
                         variant="ghost"
@@ -142,9 +153,13 @@ const handleSubmit = async (e) => {
                         isRound={true}
                         _hover={{ bg: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)") }}
                         icon={<BsGithub size="28px" />}
+                        />
+                        </Link>
+                        <Link
+                         href="https://discord.gg/FnCvn7f7zh"
+                         target="_blank"
+                         rel="noopener noreferrer"
                         >
-                          <Link href="https://github.com/ChandraStation" ></Link>
-                        </IconButton>
                       <IconButton
                         aria-label="discord"
                         variant="ghost"
@@ -153,9 +168,8 @@ const handleSubmit = async (e) => {
                         isRound={true}
                         _hover={{ bg: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)") }}
                         icon={<BsDiscord size="28px" />}
-                      >
-                        <Link href="" ></Link>
-                      </IconButton>
+                      />
+                        </Link>
                     </HStack>
                   </Box>
                 </WrapItem>

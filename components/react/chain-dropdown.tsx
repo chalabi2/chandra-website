@@ -235,7 +235,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
     );
   };
 
-  const allowedChains = ['Akash', 'Chihuahua', 'Comdex'];
+  const allowedChains = ['Akash', 'Canto', 'Chihuahua', 'Comdex', 'e-Money', 'Evmos', 'Gravity Bridge', 'Juno', 'OmniFlix', 'Osmosis', 'Stride', 'Dig Chain'];
 
   return (
     <AsyncSelect

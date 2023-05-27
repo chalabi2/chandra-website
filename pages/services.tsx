@@ -21,7 +21,8 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  IconButton
+  IconButton,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import Header from '../components/react/header';
 import Head from 'next/head';
@@ -109,7 +110,7 @@ const ServicesPage = () => {
           }}
           >
   <Tab sx={{
-    width: "500px", 
+    width: useBreakpointValue({base: "50px" , md: "500px"}), 
     _selected: { 
       borderBottomColor: tabColor
     }
@@ -117,7 +118,7 @@ const ServicesPage = () => {
     Endpoints
   </Tab>
   <Tab sx={{ 
-    width: "500px", 
+    width: useBreakpointValue({base: "50px" , md: "500px"}), 
     _selected: { 
       borderBottomColor: tabColor
     }

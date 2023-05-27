@@ -77,6 +77,7 @@ import { useRouter } from "next/router";
                 </HStack>
                 <HStack>
                   <Box
+                  onClick={() => router.push('/contact')}
                     borderRadius={"10px"}
                     width="75px"
                     height="75px"
@@ -94,10 +95,10 @@ import { useRouter } from "next/router";
                     </Icon>
                   </Box>
                   <VStack alignItems="start">
-                    <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
+                    <Text onClick={() => router.push('/contact')} fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       White Label
                     </Text>
-                    <Text fontSize="sm">
+                    <Text onClick={() => router.push('/contact')} fontSize="sm">
                       Extremly selective white labeling service
                     </Text>
                   </VStack>
@@ -132,6 +133,7 @@ import { useRouter } from "next/router";
                 </HStack>
                 <HStack>
                   <Box
+                  onClick={() => router.push('/contact')}
                     borderRadius={"10px"}
                     width="75px"
                     height="75px"
@@ -149,16 +151,17 @@ import { useRouter } from "next/router";
                     </Icon>
                   </Box>
                   <VStack alignItems="start">
-                    <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
+                    <Text onClick={() => router.push('/contact')} fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Advising
                     </Text>
-                    <Text fontSize="sm">
+                    <Text onClick={() => router.push('/contact')} fontSize="sm">
                       Assistance with launching and building in Cosmos
                     </Text>
                   </VStack>
                 </HStack>
                 <HStack>
                   <Box
+                  onClick={() => router.push('/contact')}
                     borderRadius={"10px"}
                     width="75px"
                     height="75px"
@@ -176,10 +179,10 @@ import { useRouter } from "next/router";
                     </Icon>
                   </Box>
                   <VStack alignItems="start">
-                    <Text fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
+                    <Text onClick={() => router.push('/contact')} fontSize={{ base: "xl", sm: "1xl", md: "2xl" }}>
                       Development
                     </Text>
-                    <Text fontSize="sm">
+                    <Text onClick={() => router.push('/contact')} fontSize="sm">
                       Specializing in application development and blockchain
                     </Text>
                   </VStack>
