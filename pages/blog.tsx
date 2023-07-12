@@ -82,7 +82,9 @@ const BlogPost = ({ title, author, date, content }) => {
       }
       }}
       color={useColorModeValue("#013133", "#b5fdff")} overflow="scroll" wordWrap="break-word" width="100%">
-  <ReactMarkdown className='markdown'  children={isExpanded ? content : snippet} />
+  <ReactMarkdown className='markdown'  children={isExpanded ? content : snippet} >
+    
+  </ReactMarkdown>
 </Box>
       <Button 
       bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}

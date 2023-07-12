@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Text,
@@ -30,11 +30,16 @@ import Link from 'next/link';
 import { IoArrowBack } from 'react-icons/io5';
 import { useRouter } from 'next/router'
 import { MdArrowDropDown } from 'react-icons/md';
+import axios from 'axios';
 
 const ServicesPage = () => {
 
+  const [snapshotData, setSnapshotData] = useState([]);
+
+  const [snapshotLinks, setSnapshotLinks] = useState([]);
+
   const baseURL = "chandrastation.com"
-  const baseSnapshotURL = "https://snapshot.chandrastation.com/"
+  const baseSnapshotURL = "https://snapshots.chandrastation.com/"
 
   const data = {
     endpoints: [
@@ -42,8 +47,8 @@ const ServicesPage = () => {
       { network: 'Canto', API: `https://canto.api.${baseURL}`, RPC: `https://canto.rpc.${baseURL}`, GRPC: `https://canto.grpc.${baseURL}`, EVMRPC: `https://canto.evm.${baseURL}` },
       { network: 'Chihuahua', API: `https://chihuahua.api.${baseURL}`, RPC: `https://chihuauha.rpc.${baseURL}`, GRPC: `https://chihuahua.grpc.${baseURL}` },
       { network: 'Comdex', API: `https://comdex.api.${baseURL}`, RPC: `https://comdex.rpc.${baseURL}`, GRPC: `https://comdex.grpc.${baseURL}` },
-      { network: 'Emoney', API: `https://emoney.api.${baseURL}`, RPC: `https://emoney.rpc.${baseURL}`, GRPC: `https://emoney.grpc.${baseURL}` },
       { network: 'Evmos', API: `https://evmos.api.${baseURL}`, RPC: `https://evmos.rpc.${baseURL}`, GRPC: `https://evmos.grpc.${baseURL}`, EVMRPC: `https://evmos.evm.${baseURL}` },
+      { network: 'Kava', API: `https://kava.api.${baseURL}`, RPC: `https://kava.rpc.${baseURL}`, GRPC: `https://kava.grpc.${baseURL}`, EVMRPC: `https://kava.evm.${baseURL}` },
       { network: 'Gravity', API: `https://gravity.api.${baseURL}`, RPC: `https://gravity.rpc.${baseURL}`, GRPC: `https://gravity.grpc.${baseURL}` },
       { network: 'Juno', API: `https://juno.api.${baseURL}`, RPC: `https://juno.rpc.${baseURL}`, GRPC: `https://juno.grpc.${baseURL}` },
       { network: 'OmniFlix', API: `https://flix.api.${baseURL}`, RPC: `https://flix.rpc.${baseURL}`, GRPC: `https://flix.grpc.${baseURL}` },
@@ -51,17 +56,18 @@ const ServicesPage = () => {
       { network: 'Stride', API: `https://stride.api.${baseURL}`, RPC: `https://stride.rpc.${baseURL}`, GRPC: `https://stride.grpc.${baseURL}` },
     ],
     snapshots: [
-      { network: 'Akash', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Canto', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Chihuahua', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Comdex', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Emoney', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Evmos', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Gravity', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Juno', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'OmniFlix', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Osmosis', snapshot: `${baseSnapshotURL}akash` },
-      { network: 'Stride', snapshot: `${baseSnapshotURL}akash` },
+      { network: 'Akash', snapshot: `${baseSnapshotURL}akash/` },
+      { network: 'Kava', snapshot: `${baseSnapshotURL}kava/` },
+      { network: 'Canto', snapshot: `${baseSnapshotURL}canto/` },
+      { network: 'Chihuahua', snapshot: `${baseSnapshotURL}huahua` },
+      { network: 'Comdex', snapshot: `${baseSnapshotURL}comdex` },
+      { network: 'Emoney', snapshot: `${baseSnapshotURL}emd` },
+      { network: 'Evmos', snapshot: `${baseSnapshotURL}evmos` },
+      { network: 'Gravity', snapshot: `${baseSnapshotURL}gravity/` },
+      { network: 'Juno', snapshot: `${baseSnapshotURL}juno` },
+      { network: 'OmniFlix', snapshot: `${baseSnapshotURL}omniflix/` },
+      { network: 'Osmosis', snapshot: `${baseSnapshotURL}osmosis/` },
+      { network: 'Stride', snapshot: `${baseSnapshotURL}stride/` },
     ]
   };
 
@@ -85,6 +91,39 @@ const ServicesPage = () => {
   };
 
   const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
+
+  useEffect(() => {
+    data.snapshots.forEach(({ network, snapshot }) => {
+      axios.get(snapshot)
+        .then((response) => {
+          const newLinks = response.data.map((file: any) => {
+            const date = new Date(file.mtime);
+            const options = {
+              month: 'numeric',
+              day: 'numeric',
+              year: 'numeric',
+            };
+            const localDate = date.toLocaleString([], options);
+            const sizeGB = (file.size / (1024 * 1024 * 1024)).toFixed(2);
+            return {
+              network,
+              name: file.name,
+              link: `${snapshot}${file.name}`,
+              date: localDate,
+              size: `${sizeGB} GB`,
+            };
+          });
+          setSnapshotData((prev) => [...prev, ...newLinks]);
+        })
+        .catch((error) => {
+          console.error('Error fetching snapshot:', error);
+        });
+    });
+  }, []);
+
+  const filteredEndpoints = endpointType === "EVM RPC"
+    ? data.endpoints.filter(endpoint => endpoint.network === "Canto" || endpoint.network === "Evmos" || endpoint.network === "Kava")
+    : data.endpoints;
 
   return (
     <>
@@ -110,7 +149,7 @@ const ServicesPage = () => {
           }}
           >
   <Tab sx={{
-    width: useBreakpointValue({base: "50px" , md: "500px"}), 
+    width: useBreakpointValue({base: "100px" , md: "500px"}), 
     _selected: { 
       borderBottomColor: tabColor
     }
@@ -118,7 +157,7 @@ const ServicesPage = () => {
     Endpoints
   </Tab>
   <Tab sx={{ 
-    width: useBreakpointValue({base: "50px" , md: "500px"}), 
+    width: useBreakpointValue({base: "100px" , md: "500px"}), 
     _selected: { 
       borderBottomColor: tabColor
     }
@@ -154,7 +193,7 @@ const ServicesPage = () => {
                     _hover={{
                       bgColor: hoverBgColor,
                     }}
-                     colorScheme={useColorModeValue("#b5fdff", "#013133")} variant="ghost"
+                     colorScheme={useColorModeValue("#b5fdff", "#013133")}
                   >{endpointType}</MenuButton>
                   <MenuList
                   p={0} minW="0" w={'90px'}
@@ -199,65 +238,43 @@ const ServicesPage = () => {
               </Th>
             </Tr>
           </Thead>
-          <Tbody
-        >
-            {data.endpoints.map((endpoint, index) => (
-              <Tr key={index}
-              >
-                <Td
-                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
-                >{endpoint.network}</Td>
+          <Tbody>
+            {filteredEndpoints.map((endpoint, index) => (
+              <Tr key={index}>
+                <Td>{endpoint.network}</Td>
                 {/* Display the endpoint based on the selected type */}
-                <Td
-                 borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
-                pl={300}
-                >
-                <a href={formatEndpointLink(endpoint, endpointType)} target="_blank" rel="noopener noreferrer">
-    {displayEndpointLink(endpoint.network, endpointType)}
-  </a>
+                <Td pl={300}>
+                  <a href={formatEndpointLink(endpoint, endpointType)} target="_blank" rel="noopener noreferrer">
+                    {displayEndpointLink(endpoint.network, endpointType)}
+                  </a>
                 </Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TabPanel>
-              <TabPanel>
-                <Table variant="simple" colorScheme="teal">
-                  <Thead>
-                    <Tr>
-                      <Th
-                      borderBottomColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
-                      >Network</Th>
-                      <Th
-                      borderBottomColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
-                      pl={300}
-                      >
-                        
-                        Snapshot
-                        
-                        <Button
-                        color={"transparent"}
-                        zIndex={"-10"}
-                        />
-                        </Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {data.snapshots.map((snapshot, index) => (
-                      <Tr key={index}
-                      >
-                        <Td
-                        borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
-                        >{snapshot.network}</Td>
-                        <Td
-                        borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
-                        pl={300}
-                        >{snapshot.snapshot}</Td>
-                      </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
-              </TabPanel>
+      <TabPanel>
+        <Table variant="simple" colorScheme="teal">
+          <Thead>
+            <Tr>
+              <Th>Network</Th>
+              <Th pl={300}>Snapshot</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {snapshotData.map((snapshot, index) => (
+              <Tr key={index}>
+                <Td>{snapshot.network}</Td>
+                <Td pl={300}>
+                  <a href={snapshot.link} target="_blank" rel="noopener noreferrer">
+                    {`${snapshot.name} | ${snapshot.date} | ${snapshot.size}`}
+                  </a>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TabPanel>
             </TabPanels>
           </Tabs>
         </VStack>

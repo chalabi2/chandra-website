@@ -163,7 +163,7 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>98%</Text>
+                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>~99.7%</Text>
               </Flex>
             </GridItem>
           </Grid>
