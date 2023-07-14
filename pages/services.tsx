@@ -317,9 +317,9 @@ const snapshot: Snapshot = {
     <Tr>
       <Th>Network</Th>
       <Th pl={10}>Snapshot File</Th>
-      <Th pl={10}>Height</Th> {/* Add a new column for Block Height */}
-      <Th pl={10}>Size</Th> {/* Add a new column for Size */}
-      <Th pl={10}>Date</Th> {/* Add a new column for Date */}
+      <Th pl={10}>Height</Th> 
+      <Th pl={10}>Size</Th> 
+      <Th pl={10}>Date</Th> 
     </Tr>
   </Thead>
   <Tbody>
@@ -327,12 +327,14 @@ const snapshot: Snapshot = {
       <Tr key={index}>
         
         <Td>{snapshot.network}</Td>
-      <Td pl={10}>
-        <a href={snapshot.link} target="_blank" rel="noopener noreferrer">{snapshot.name}</a>
-      </Td>
-      <Td pl={10}>{formatBlockHeight(snapshot.blockHeight)}</Td> {/* Show the block height */}
-      <Td pl={10}>{snapshot.size}</Td> {/* Show the size */}
-      <Td pl={10}>{snapshot.date}</Td> {/* Show the date */}
+        <Td>
+  <Button textDecoration="underline" variant="ghost" as="a" href={snapshot.link} target="_blank" rel="noopener noreferrer" colorScheme="teal">
+    {snapshot.name}
+  </Button>
+</Td>
+      <Td pl={10}>{formatBlockHeight(snapshot.blockHeight)}</Td> 
+      <Td pl={10}>{snapshot.size}</Td> 
+      <Td pl={10}>{snapshot.date}</Td>
       </Tr>
     ))}
   </Tbody>
