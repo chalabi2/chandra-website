@@ -42,11 +42,11 @@ import {
             <HStack
   maxH="600px"
   alignContent={"center"}
-  py={-10}
+
   justifyContent="center"
   flexDirection={flexDirection}
 >
-              <VStack mt={useBreakpointValue({lg: 600, md: 400, sm: 400})} maxH="600px">
+              <VStack mt={useBreakpointValue({lg: 300, md: 400, sm: 400, base: 300})} maxH="600px">
                <Box 
 
     justifyContent="center"
