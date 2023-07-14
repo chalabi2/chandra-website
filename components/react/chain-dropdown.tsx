@@ -39,18 +39,22 @@ const SkeletonOptions = () => {
 
 const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
   const menuHeight = useBreakpointValue({ base: 60, md: 56 });
+  const borderColor= useColorModeValue("#013133", "#b5fdff");
+
   const customStyles = {
     control: (provided: SystemStyleObject) => ({
       ...provided,
-      height: 12
+      height: 12,
+      borderColor: borderColor
     }),
     menu: (provided: SystemStyleObject) => ({
       ...provided,
       h: menuHeight,
       mt: 4,
       mb: 0,
-      bg: useColorModeValue('white', 'gray.900'),
-      boxShadow: useColorModeValue('0 1px 5px #e3e3e3', '0 0px 4px #4b4b4b'),
+      bg: useColorModeValue("#b5fdff", "#013133"),
+      boxShadow: useColorModeValue('0 1px 5px #013133', '0 0px 4px #b5fdff'),
+      borderColor: borderColor,
       borderRadius: '0.3rem'
     }),
     menuList: (provided: SystemStyleObject) => ({
@@ -102,6 +106,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
       return {
         ...provided,
         borderRadius: 'lg',
+        borderColor: borderColor,
         h: 14,
         color: 'inherit',
         bg: useColorModeValue(
@@ -158,7 +163,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
             spacing={3}
             overflow="hidden"
             wordBreak="break-word"
-            color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}
+            color={useColorModeValue("#013133", "#b5fdff")}
             w="full"
           >
             <Box
@@ -169,10 +174,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
               w="full"
               h="full"
               border="1px solid"
-              borderColor={useColorModeValue(
-                'blackAlpha.200',
-                'whiteAlpha.200'
-              )}
+              borderColor={useColorModeValue("#013133", "#b5fdff")}
               borderRadius="full"
               overflow="hidden"
             >
@@ -204,7 +206,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
           spacing={3}
           overflow="hidden"
           wordBreak="break-word"
-          color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}
+          color={useColorModeValue("#013133", "#b5fdff")}
           w="full"
         >
           <Box
@@ -215,7 +217,7 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
             w="full"
             h="full"
             border="1px solid"
-            borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.200')}
+            borderColor={useColorModeValue("#b5fdff", "#013133")}
             borderRadius="full"
             overflow="hidden"
           >
@@ -232,6 +234,8 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
       </chakraComponents.Option>
     );
   };
+
+  const allowedChains = ['Akash', 'Canto', 'Chihuahua', 'Comdex', 'e-Money', 'Evmos', 'Gravity Bridge', 'Juno', 'OmniFlix', 'Osmosis', 'Stride', 'Dig Chain'];
 
   return (
     <AsyncSelect
@@ -251,7 +255,11 @@ const SelectOptions = ({ data, value, onChange }: ChangeChainMenuType) => {
         const searcher = new Searcher(data, {
           keySelector: (obj) => obj.label
         });
-        callback(searcher.search(inputValue));
+        const results = searcher.search(inputValue);
+        const filteredResults = results.filter(option => {
+          return allowedChains.includes(option.label); 
+        });
+        callback(filteredResults);
       }}
       onChange={onChange}
       components={{
@@ -270,7 +278,7 @@ export const ChangeChainDropdown = ({
   onChange
 }: ChangeChainDropdownType) => {
   return (
-    <Box w="full" position="relative" zIndex={150}>
+    <Box w="full" position="relative" zIndex={1}>
       <SelectOptions data={data} value={selectedItem} onChange={onChange} />
     </Box>
   );

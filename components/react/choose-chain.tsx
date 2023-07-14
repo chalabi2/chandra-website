@@ -16,16 +16,24 @@ export function ChooseChain({
   onChange: handleSelectChainDropdown;
 }) {
   const [selectedItem, setSelectedItem] = useState<ChainOption | undefined>();
+  
+  // Specify the chains you want to include
+  const allowedChains = ['Akash', 'Canto', 'Chihuahua', 'Evmos', 'Gravity Bridge', 'Juno', 'OmniFlix', 'Osmosis', 'Stride'];
+  
+  // Filter the chains
+const filteredChains = chainInfos.filter(chainInfo => allowedChains.includes(chainInfo.label));
+
   useEffect(() => {
-    if (chainName && chainInfos.length > 0)
+    if (chainName && filteredChains.length > 0)
       setSelectedItem(
-        chainInfos.filter((options) => options.chainName === chainName)[0]
+        filteredChains.filter((options) => options.chainName === chainName)[0]
       );
     if (!chainName) setSelectedItem(undefined);
-  }, [chainInfos, chainName]);
+  }, [filteredChains, chainName]);
+
   return (
     <ChangeChainDropdown
-      data={chainInfos}
+      data={filteredChains}
       selectedItem={selectedItem}
       onChange={onChange}
     />

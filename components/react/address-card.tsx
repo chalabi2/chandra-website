@@ -100,8 +100,8 @@ export const ConnectedShowAddress = ({
       border="1px solid"
       borderColor={handleChangeColorModeValue(
         colorMode,
-        'gray.200',
-        'whiteAlpha.300'
+        '#013133',
+        '#b5fdff'
       )}
       w="full"
       h={SIZES[size as keyof typeof SIZES].height}
@@ -110,8 +110,8 @@ export const ConnectedShowAddress = ({
       pr={2}
       color={handleChangeColorModeValue(
         colorMode,
-        'gray.700',
-        'whiteAlpha.600'
+        '#013133',
+        '#b5fdff'
       )}
       transition="all .3s ease-in-out"
       isDisabled={!address && true}
