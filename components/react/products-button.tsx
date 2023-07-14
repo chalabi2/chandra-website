@@ -17,7 +17,6 @@ variant="ghost"
           aria-label="More"
           position="absolute"
           size="md"
-          variant="ghost"
           zIndex={1}
           _hover={{
             bgColor: hoverBgColor,

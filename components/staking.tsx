@@ -313,7 +313,6 @@ const allValidators = chandraStationValidator.sort((a, b) =>
     borderRadius={"4px"}
     bgColor={useColorModeValue("rgba(255, 255, 255, 0.2)", "rgba(0, 0, 0, 0.2)")}
     p={4}
-    mt="-305px"
     minH={"365px"}
     >
       <SkeletonText

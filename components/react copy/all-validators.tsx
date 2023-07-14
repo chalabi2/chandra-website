@@ -26,6 +26,7 @@ import {
   useColorMode,
   Center,
   useColorModeValue,
+  border,
 } from '@chakra-ui/react';
 import {
   DelegateWarning,
@@ -133,6 +134,7 @@ const AllValidators = ({
     return 0;
   };
 
+  const borderColor=useColorModeValue("#013133", "#b5fdff");
   const onModalClose = () => {
     setAmount('');
     setIsDelegating(false);
@@ -254,7 +256,6 @@ const AllValidators = ({
                     ).toFixed(0)
                   : 0
               }
-              apr={22.08}
             />
             <ValidatorDesc
               description={currentValidator?.description?.details || ''}
@@ -315,16 +316,16 @@ const AllValidators = ({
               >Commission</Th>
               <Th
               borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
-              >APR</Th>
+              ></Th>
             </Tr>
           </Thead>
 
           <Tbody>
-            {validators.map((validator: Validator, index: "number") => (
+            {validators.map((validator: Validator) => (
               <Tr key={validator?.description?.moniker}>
                 <Td
-                borderTopColor={useColorModeValue("#013133", "#b5fdff")}
-                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                borderTopColor={borderColor}
+                borderBottomColor={borderColor}
                 >
                   <Box
                     display="flex"
@@ -341,7 +342,7 @@ const AllValidators = ({
                   </Box>
                 </Td>
                 <Td
-                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                borderBottomColor={borderColor}
                 >
                   {Math.floor(
                     exponentiate(validator.tokens, -exp)
@@ -350,7 +351,7 @@ const AllValidators = ({
                   <Token color="blackAlpha.800" token={coin.symbol} />
                 </Td>
                 <Td
-                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                borderBottomColor={borderColor}
                 >
                   {validator.commission?.commissionRates?.rate &&
                     exponentiate(
@@ -360,11 +361,10 @@ const AllValidators = ({
                   %
                 </Td>
                 <Td
-                borderBottomColor={useColorModeValue("#013133", "#b5fdff")}
+                borderBottomColor={borderColor}
                 >
                   <Box width="100%" display="flex" alignItems="center">
                     {/* <Text>{validator.apr}</Text> */}
-                    <Text>22.04%</Text>
                     <Button
                       variant="ghost"
                       ml="auto"
@@ -373,7 +373,7 @@ const AllValidators = ({
                         setCurrentValidator(validator);
                       }}
                       color={
-                        useColorModeValue("#013133", "#b5fdff")
+                       borderColor
                       }
                     >
                       Manage

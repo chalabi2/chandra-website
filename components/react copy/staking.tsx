@@ -279,7 +279,7 @@ export const StakingSection = ({ chainName }: { chainName: ChainName }) => {
     if (validatorThumbnails) {
       thumbnails = JSON.parse(validatorThumbnails);
     } else {
-      thumbnails = await getImgUrls(validators, chainName);
+      thumbnails = await getImgUrls(myValidators, chainName);
       localStorage.setItem(
         `${chainName}-validator-thumbnails`,
         JSON.stringify(thumbnails)

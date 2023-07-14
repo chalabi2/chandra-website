@@ -29,7 +29,7 @@ import { getDelegators, getTvl } from "../queries/queries";
   
     const statColumns = useBreakpointValue({
       base: "repeat(1, 1fr)",
-      sm: "repeat(2, 1fr)",
+      sm: "repeat(1, 1fr)",
       md: "repeat(2, 1fr)",
     });
 
@@ -40,13 +40,14 @@ import { getDelegators, getTvl } from "../queries/queries";
         lg: 0,
       });
 
-    const [totalStakers, setTotalStakers] = useState(0);
+      const [totalStakers, setTotalStakers] = useState<string>("");
+
 
     useEffect(() => {
         getDelegators().then(setTotalStakers);
     }, []);
 
-    const [tvl, setTvl] = useState(0);
+    const [tvl, setTvl] = useState<string>("");
 
     useEffect(() => {
         getTvl().then(setTvl);
@@ -112,15 +113,16 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <SkeletonText 
-                noOfLines={1}
-                skeletonHeight="10"
-                skeletonWidth="1"
-                isLoaded={tvl !== 0}>
-  <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
-    ${tvl}
-  </Text>
-</SkeletonText>
+                <Box width="20em" height="0em">
+    <SkeletonText 
+        noOfLines={1}
+        isLoaded={Number(tvl) !== 0}
+    >
+        <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
+            ${tvl}
+        </Text>
+    </SkeletonText>
+</Box>
               </Flex>
             </GridItem>
             <GridItem>
@@ -131,17 +133,16 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <SkeletonText 
-                 mt="0"
-                 noOfLines={1}
-                 spacing="0"
-                 skeletonHeight="10"
-                 skeletonWidth="1"
-                isLoaded={totalStakers !== 0}>
-  <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
-    {totalStakers}
-  </Text>
-</SkeletonText>
+                <Box width="20em" height="10em">
+    <SkeletonText 
+        noOfLines={1}
+        isLoaded={Number(tvl) !== 0}
+    >
+        <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>
+            {totalStakers}
+        </Text>
+    </SkeletonText>
+</Box>
               </Flex>
             </GridItem>
             <GridItem>
@@ -152,7 +153,7 @@ import { getDelegators, getTvl } from "../queries/queries";
                 <Box mt={1}>
                 <Divider borderColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")} />
                 </Box>
-                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>14</Text>
+                <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>12</Text>
               </Flex>
             </GridItem>
             <GridItem>

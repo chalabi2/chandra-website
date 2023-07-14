@@ -18,7 +18,7 @@ export function ChooseChain({
   const [selectedItem, setSelectedItem] = useState<ChainOption | undefined>();
   
   // Specify the chains you want to include
-  const allowedChains = ['Akash', 'Canto', 'Chihuahua', 'Comdex', 'e-Money', 'Evmos', 'Gravity Bridge', 'Juno', 'OmniFlix', 'Osmosis', 'Stride', 'Dig Chain'];
+  const allowedChains = ['Akash', 'Canto', 'Chihuahua', 'Evmos', 'Gravity Bridge', 'Juno', 'OmniFlix', 'Osmosis', 'Stride'];
   
   // Filter the chains
 const filteredChains = chainInfos.filter(chainInfo => allowedChains.includes(chainInfo.label));

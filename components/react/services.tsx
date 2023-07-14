@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
   } from "react-icons/io5";
   
   function Services() {
-    const direction = useBreakpointValue({ base: "column", md: "row" });
+
     const servicesOrder = useBreakpointValue({ base: 0, sm: 0, md: 1 });
     const boxesOrder = useBreakpointValue({ base: 1, sm: 1, md: 0 });
     const router = useRouter();
@@ -32,7 +32,7 @@ import { useRouter } from "next/router";
       mt={useBreakpointValue({base: 0, md: -300})}
       >
         <Box position="relative" zIndex={1}>
-          <Stack direction={direction} justifyContent={"space-between"}>
+          <Stack direction={useBreakpointValue({ base: "column", md: "row" })} justifyContent={"space-between"}>
             <VStack order={boxesOrder}
               alignContent={"center"}
               py={20}

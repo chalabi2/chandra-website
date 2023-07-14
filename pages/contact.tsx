@@ -24,6 +24,7 @@ import {
     MdLocationOn,
     MdOutlineEmail,
   } from "react-icons/md"
+  import { IoArrowBack } from 'react-icons/io5';
   import { BsGithub, BsDiscord, BsPerson, BsTwitter } from "react-icons/bs"
 import Header from "../components/react/header"
 import { useState } from 'react';
@@ -41,7 +42,7 @@ const [message, setMessage] = useState('');
 const toast = useToast();
 // rest of your code
 
-const handleSubmit = async (e) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   try {
@@ -53,17 +54,23 @@ const handleSubmit = async (e) => {
         duration: 5000,
         isClosable: true,
       });
-  } catch (error) {
-      toast({
-        title: "Error Sending Message",
-        description: error.response?.data || "An unexpected error occurred.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-  }
-}
+  }catch (error) {
+    let errorMessage = "An unexpected error occurred.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+  
+    toast({
+      title: "Error Sending Message",
+      description: errorMessage,
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }}
     
+  const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
+
     return (
         <>
         <Header/>
@@ -184,7 +191,7 @@ const handleSubmit = async (e) => {
     <FormControl id="name">
         <FormLabel color={useColorModeValue("#013133", "#b5fdff")}>Your Name</FormLabel>
         <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
-            <InputLeftElement pointerEvents="none" children={<BsPerson color={useColorModeValue("#013133", "#b5fdff")} />} />
+            <InputLeftElement pointerEvents="none" />
             <Input value={name} onChange={(e) => setName(e.target.value)} color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" />
         </InputGroup>
     </FormControl>
@@ -192,7 +199,7 @@ const handleSubmit = async (e) => {
     <FormControl id="email">
         <FormLabel color={useColorModeValue("#013133", "#b5fdff")}>Email</FormLabel>
         <InputGroup borderColor={useColorModeValue("#013133", "#b5fdff")}>
-            <InputLeftElement pointerEvents="none" children={<MdOutlineEmail color={useColorModeValue("#013133", "#b5fdff")}/>} />
+            <InputLeftElement pointerEvents="none"/>
             <Input value={email} onChange={(e) => setEmail(e.target.value)} color={useColorModeValue("#013133", "#b5fdff")} type="text" size="md" />
         </InputGroup>
     </FormControl>
@@ -215,6 +222,21 @@ const handleSubmit = async (e) => {
             </Box>
           </Box>
         </Flex>
+        <Link
+        href={"/"}
+        >
+        <Button
+         _hover={{
+          bgColor: buttonHover
+                  
+                }}
+        my={20}
+        bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+      bottom={0}
+      left={-350}
+      leftIcon={<IoArrowBack/>}
+      >Back</Button>
+      </Link>
       </Container>
       </>
     )

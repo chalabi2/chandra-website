@@ -136,6 +136,6 @@ export async function getTvl() {
         return acc + value;
     }, 0);
 
-    console.log(totalValue);
+
     return Intl.NumberFormat('en-US').format(totalValue);
 }

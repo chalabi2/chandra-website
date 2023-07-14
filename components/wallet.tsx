@@ -6,13 +6,13 @@ import {
   GridItem,
   Icon,
   Stack,
+  border,
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react';
 import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 import {
-  Astronaut,
   Error,
   Connected,
   ConnectedShowAddress,
@@ -26,13 +26,13 @@ import {
   RejectedWarn,
   WalletConnectComponent,
   handleSelectChainDropdown,
-  ChainCard,
   ChooseChain,
   ChainOption,
   ConnectWalletButton,
 } from '.';
 import { defaultChainName } from '../config/defaults';
 import { ChainName } from '@cosmos-kit/core';
+import { ChainCard } from './react copy';
 
 export const WalletSection = ({
   isMultiChain,
@@ -86,6 +86,8 @@ export const WalletSection = ({
     e.preventDefault();
     openView();
   };
+
+  const borderColor = useColorModeValue("#013133", "#b5fdff")
 
   // Components
   const connectWalletButton = (
@@ -158,7 +160,6 @@ export const WalletSection = ({
   );
 
   return (
-    <Center py={16}>
       <Grid
        shadow={"dark-lg"}
        borderRadius={"4px"}
@@ -189,7 +190,7 @@ export const WalletSection = ({
               justifyContent="center"
               alignItems="center"
               borderRadius="lg"
-              borderColor={useColorModeValue("#013133", "#b5fdff")}
+              borderColor={borderColor}
               boxShadow={
                 colorMode === 'light'
                   ? '0 0 2px #013133, 0 0 6px -2px #b5fdff'
@@ -209,6 +210,5 @@ export const WalletSection = ({
           </GridItem>
         )}
       </Grid>
-    </Center>
   );
 };

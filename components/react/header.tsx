@@ -31,19 +31,26 @@ import {
   import { useState } from "react";
   import ServiceButton from "./service-button";
 import { MdOutlineLineWeight } from "react-icons/md";
+
+type MenuItemsProps = {
+  stackType: string | undefined
+};
+
   
-  const MenuItems = ({ stackType }) => {
+const MenuItems: React.FC<MenuItemsProps> = ({ stackType }) => {
     const StackComponent = stackType === "HStack" ? HStack : VStack;
+    const servicePadding = useBreakpointValue({ lg: 0, md: 8, sm: 8 });
     const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
     return (
       <StackComponent spacing={10}>
        <ServiceButton/>
       <Link href="/blog" passHref>
-  <Button _hover={{
+  <Button 
+  _hover={{
             bgColor: hoverBgColor,
           }}
            colorScheme={useColorModeValue("#b5fdff", "#013133")} variant="ghost" as="a">
-    <Text fontSize="lg">Blog</Text>
+    <Text pt={servicePadding} fontSize="lg">Blog</Text>
   </Button>
 </Link>
 <Link href={"/staking"}>

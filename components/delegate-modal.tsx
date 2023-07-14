@@ -24,12 +24,10 @@ export const ValidatorInfo = ({
   imgUrl,
   name,
   commission,
-  apr,
 }: {
   imgUrl: string;
   name: string;
   commission: number | string;
-  apr: number;
 }) => (
   <Flex alignItems="center" gap={4} mb={4}>
     {imgUrl ? (
@@ -44,7 +42,7 @@ export const ValidatorInfo = ({
         {name}
       </Heading>
       <Text>
-        Commission {commission}% | APR {apr}%
+        Commission {commission}%
       </Text>
     </Stack>
   </Flex>

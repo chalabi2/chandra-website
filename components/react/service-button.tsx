@@ -1,26 +1,31 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Button, Menu, MenuButton, MenuItem, MenuList, useColorModeValue, useBreakpointValue } from "@chakra-ui/react";
-import Link from "next/link";
+
 import { useRouter } from 'next/router';
 
 function ServiceButton() {
   const router = useRouter();
     const hoverBgColor = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)");
+    const serviceLocation = useBreakpointValue({ lg: -100, md: 5, sm: 5 });
+    const serviceBackgroundFill = useColorModeValue("rgba(1, 49, 51)", "rgba(181, 253, 255)")
+    const serviceBackgroundTrans = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")
+    const serviceBackground = useBreakpointValue({lg: serviceBackgroundTrans, md: serviceBackgroundFill, sm: serviceBackgroundFill})
+    const menuButtonProp = useColorModeValue("#013133", "#b5fdff");
+    
 
     return (
         <Menu>
-        <MenuButton
-        color={useColorModeValue("#013133", "#b5fdff")}
+        <MenuButton as={Button as any}
+        color={menuButtonProp}
 fontSize="lg"
 variant="ghost"
-          as={Button}
+
           boxShadow="none"
           rightIcon={<ChevronDownIcon boxSize="25px" />}
           aria-label="More"
           position="absolute"
-          ml="-100px"
+          ml={serviceLocation}
           size="md"
-          variant="ghost"
           zIndex={1}
           _hover={{
             bgColor: hoverBgColor,
@@ -30,7 +35,7 @@ variant="ghost"
         <MenuList
         p={0} minW="0" w={'90px'}
           height="74px"
-          bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+          bg={serviceBackground}
           color="white"
         >
           <MenuItem
@@ -39,7 +44,7 @@ variant="ghost"
             _hover={{
               textDecoration: "underline",
             }}
-            bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+            bg={hoverBgColor}
           >
             Endpoints
           </MenuItem>
@@ -49,7 +54,7 @@ variant="ghost"
             _hover={{
               textDecoration: "underline",
             }}
-            bg={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
+            bg={hoverBgColor}
           >
             Snapshots
           </MenuItem>

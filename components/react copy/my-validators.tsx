@@ -22,6 +22,8 @@ import {
   Text,
   Image,
   useColorMode,
+  useColorModeValue,
+  border,
 } from '@chakra-ui/react';
 import { Token } from './stats';
 import { IoArrowForward } from 'react-icons/io5';
@@ -369,6 +371,8 @@ const MyValidators = ({
     }
   };
 
+  const borderColor = useColorModeValue("#013133", "#b5fdff");
+
   return (
     <>
       <Heading as="h4" size="md" mt={12} mb={6}>
@@ -397,7 +401,6 @@ const MyValidators = ({
                   ? exponentiate(currentValidator.commission, -16).toFixed(0)
                   : 0
               }
-              apr={22.08}
             />
             <ValidatorDesc description={currentValidator?.details || ''} />
 
@@ -451,7 +454,6 @@ const MyValidators = ({
                   ? exponentiate(currentValidator.commission, -16).toFixed(0)
                   : 0
               }
-              apr={22.08}
             />
             <DelegateWarning unbondingDays={unbondingDays} />
             <Stack direction="row" spacing={4} my={4}>
@@ -511,7 +513,6 @@ const MyValidators = ({
                   ? exponentiate(currentValidator.commission, -16).toFixed(0)
                   : 0
               }
-              apr={22.08}
             />
             <Stack direction="column" spacing={4}>
               <UndelegateWarning unbondingDays={unbondingDays} />
@@ -556,7 +557,6 @@ const MyValidators = ({
                     <Th>Validator</Th>
                     <Th>Voting Power</Th>
                     <Th>Commission</Th>
-                    <Th>APR</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -684,7 +684,6 @@ const MyValidators = ({
                     maxWidth={280}
                     overflowX="hidden"
                   >
-                    <Text mr={4}>{index + 1}</Text>
                     <Thumbnail
                       identity={validator.identity}
                       name={validator.name}
@@ -712,7 +711,7 @@ const MyValidators = ({
                         setMaxRedelegateAmount(validator.staked);
                         onValidatorModalOpen();
                       }}
-                      color={useColorModeValue("#013133", "#b5fdff")}
+                      color={borderColor}
                     >
                       Manage
                       <Icon as={IoArrowForward} />

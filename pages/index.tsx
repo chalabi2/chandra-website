@@ -1,12 +1,15 @@
 import Head from "next/head";
-import { Box, Divider, Text, Stack, Container, Link, HStack, Spacer, Wrap, Image, useColorModeValue, button } from "@chakra-ui/react";
+import { Box, Divider, Text, Container, Button, Link, HStack, useColorModeValue, IconButton } from "@chakra-ui/react";
 
 import Header from "../components/react/header";
 import Intro from "../components/react/intro";
 import Validating from "../components/react/validating";
 import Services from "../components/react/services";
+import { BsTwitter, BsGithub, BsDiscord } from "react-icons/bs";
 
 export default function Home() {
+
+  const hoverBG = useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")
   return (
     <>
           <Header />
@@ -19,7 +22,7 @@ export default function Home() {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
       <Box
-      mt={-120}
+      mt={-100}
       >
       <Intro />
       </Box>
@@ -38,67 +41,63 @@ export default function Home() {
         fontSize="sm"
         textAlign={"center"}
       >
-        <Wrap>
-              <Link
-                href="https://github.com/ChandraStation"
-                target="_blank"
+         <HStack
+                      spacing={5}
+                      alignItems="flex-start"
+                    >
+                        <Link
+                        href="https://twitter.com/ChandraStation"
+                        target="_blank"
                 rel="noopener noreferrer"
-              >
-                <Image
-                  borderRadius="full"
-                  src="https://avatars.githubusercontent.com/u/9919?s=200&v=4"
-                  alt="GitHub Logo"
-                  filter="grayscale(50%)"
-                  opacity="0.5"
-                  boxSize="30px"
-                />
-              </Link>
-              <Spacer />
-              <Link
-                href="https://discord.gg/FnCvn7f7zh"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  borderRadius="full"
-                  src="https://avatars.githubusercontent.com/u/1965106?s=200&v=4"
-                  alt="GitHub Logo"
-                  filter="grayscale(100%)"
-                  opacity="0.5"
-                  boxSize="30px"
-                />
-              </Link>
-              <Spacer />
-              <Link
-                href="https://twitter.com/ChandraStation"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  borderRadius="full"
-                  src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png"
-                  alt="GitHub Logo"
-                  filter="grayscale(100%)"
-                  opacity="0.5"
-                  boxSize="30px"
-                />
-              </Link>
-            </Wrap>
-        <Link
-          href="https://cosmology.tech/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Built with Cosmology
-        </Link>
+                        >
+                      <IconButton
+                        aria-label="twitter"
+                        variant="ghost"
+                        size="lg"
+                        color={useColorModeValue("#013133", "#b5fdff")}
+                        isRound={true}
+                        _hover={{ bg: hoverBG }}
+                        icon={<BsTwitter size="28px" />}
+                      />
+                      </Link>
+                      <Link
+                      href="https://github.com/ChandraStation"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >
+                      <IconButton
+                        aria-label="github"
+                        variant="ghost"
+                        size="lg"
+                        color={useColorModeValue("#013133", "#b5fdff")}
+                        isRound={true}
+                        _hover={{ bg: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)") }}
+                        icon={<BsGithub size="28px" />}
+                        />
+                        </Link>
+                        <Link
+                         href="https://discord.gg/FnCvn7f7zh"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                        >
+                      <IconButton
+                        aria-label="discord"
+                        variant="ghost"
+                        size="lg"
+                        color={useColorModeValue("#013133", "#b5fdff")}
+                        isRound={true}
+                        _hover={{ bg: useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)") }}
+                        icon={<BsDiscord size="28px" />}
+                      />
+                        </Link>
+                    </HStack>
+       
         <Link href={"/contact"}>
-        <Text
-              as={button}
-              textAlign="center"
-              fontSize={"lg"}
-            >
-             Contact Us
-            </Text>
+        <Button
+        variant="ghost"
+        >
+          Contact Us
+        </Button>
             </Link>
       </HStack>
     </Container>

@@ -153,8 +153,8 @@ import { useFeeEstimation, useTransactionToast } from '../hooks';
           </StatNumber>
           <Button
             pos="absolute"
-            right={4}
-            top={5}
+            right={1}
+            top={10}
             color={useColorModeValue("#013133", "#b5fdff")}
             size="sm"
             onClick={onClaimClick}

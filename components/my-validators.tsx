@@ -22,6 +22,7 @@ import {
     Text,
     Image,
     useColorMode,
+    useColorModeValue,
   } from '@chakra-ui/react';
   import { Token } from './stats';
   import { IoArrowForward } from 'react-icons/io5';
@@ -56,6 +57,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
   const { delegate } = cosmos.staking.v1beta1.MessageComposer.fromPartial;
   const { undelegate } = cosmos.staking.v1beta1.MessageComposer.fromPartial;
   const { beginRedelegate } = cosmos.staking.v1beta1.MessageComposer.fromPartial;
+
   
   const isAmountZero = (amount: string | number | undefined) =>
     new BigNumber(amount || 0).isEqualTo(0);
@@ -368,6 +370,8 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
         setIsRedelegating(false);
       }
     };
+
+    const colorFor = useColorModeValue("#013133", "#b5fdff");
   
     return (
       <>
@@ -397,7 +401,6 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                     ? exponentiate(currentValidator.commission, -16).toFixed(0)
                     : 0
                 }
-                apr={22.08}
               />
               <ValidatorDesc description={currentValidator?.details || ''} />
   
@@ -422,7 +425,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
               >
                 Redelegate
               </Button>
-              <Button colorScheme="primary" onClick={onDelegateModalOpen}>
+              <Button colorScheme="blue" onClick={onDelegateModalOpen}>
                 Delegate
               </Button>
             </ModalFooter>
@@ -451,7 +454,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                     ? exponentiate(currentValidator.commission, -16).toFixed(0)
                     : 0
                 }
-                apr={22.08}
+
               />
               <DelegateWarning unbondingDays={unbondingDays} />
               <Stack direction="row" spacing={4} my={4}>
@@ -476,7 +479,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
   
             <ModalFooter>
               <Button
-                colorScheme="primary"
+                color={useColorModeValue("#013133", "#b5fdff")}
                 onClick={onDelegateClick}
                 isLoading={isDelegating}
                 isDisabled={
@@ -511,7 +514,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                     ? exponentiate(currentValidator.commission, -16).toFixed(0)
                     : 0
                 }
-                apr={22.08}
+
               />
               <Stack direction="column" spacing={4}>
                 <UndelegateWarning unbondingDays={unbondingDays} />
@@ -526,7 +529,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
   
             <ModalFooter>
               <Button
-                colorScheme="primary"
+                color={useColorModeValue("#013133", "#b5fdff")}
                 onClick={onUndelegateClick}
                 isLoading={isUndelegating}
                 isDisabled={isAmountZero(undelegateAmount) || isUndelegating}
@@ -581,7 +584,6 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                             maxWidth={280}
                             overflowX="hidden"
                           >
-                            <Text mr={4}>{index + 1}</Text>
                             <Thumbnail
                               identity={validator.description?.identity}
                               name={validator.description?.moniker}
@@ -654,7 +656,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
   
             <ModalFooter>
               <Button
-                colorScheme="primary"
+                color={useColorModeValue("#013133", "#b5fdff")}
                 onClick={onRedelegateClick}
                 isLoading={isRedelegating}
                 isDisabled={isAmountZero(redelegateAmount) || isRedelegating}
@@ -684,7 +686,6 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                       maxWidth={280}
                       overflowX="hidden"
                     >
-                      <Text mr={4}>{index + 1}</Text>
                       <Thumbnail
                         identity={validator.identity}
                         name={validator.name}
@@ -712,9 +713,7 @@ import { MaxAmountAndFee, Thumbnail } from './react copy/all-validators';
                           setMaxRedelegateAmount(validator.staked);
                           onValidatorModalOpen();
                         }}
-                        color={
-                          colorMode === 'light' ? 'purple.600' : 'purple.200'
-                        }
+                        color={colorFor}
                       >
                         Manage
                         <Icon as={IoArrowForward} />

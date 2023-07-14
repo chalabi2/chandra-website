@@ -17,8 +17,15 @@ import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { IoArrowBack } from 'react-icons/io5';
 
+type BlogPostProps = {
+  title: string;
+  author: string;
+  date: string; 
+  content: string;
+};
 
-const BlogPost = ({ title, author, date, content }) => {
+
+const BlogPost: React.FC<BlogPostProps> = ({ title, author, date, content }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const buttonHover = useColorModeValue("rgba(1, 49, 51, 0.5)", "rgba(181, 253, 255, 0.5)")
@@ -81,9 +88,9 @@ const BlogPost = ({ title, author, date, content }) => {
         backgroundClip: 'content-box'
       }
       }}
-      color={useColorModeValue("#013133", "#b5fdff")} overflow="scroll" wordWrap="break-word" width="100%">
-  <ReactMarkdown className='markdown'  children={isExpanded ? content : snippet} >
-    
+      color={useColorModeValue("#013133", "#b5fdff")} overflow="scroll"  width="100%">
+  <ReactMarkdown className='markdown' >
+  {isExpanded ? content : snippet}
   </ReactMarkdown>
 </Box>
       <Button 
@@ -154,15 +161,6 @@ const ArticleList = () => {
 
       - space station: https://github.com/chandrastation
       - gravity bridge statistics: https://github.com/chalabi2/gravity-dashboard
-      `,
-    },
-    {
-      title: 'Test',
-      author: 'Chalabi',
-      date: 'May 22, 2023',
-      content: ` 
-      \n
-     This is a test
       `,
     }
   ];
