@@ -49,29 +49,21 @@ const ServicesPage = () => {
     endpoints: [
       { network: 'Akash', API: `https://akash.api.${baseURL}`, RPC: `https://akash.rpc.${baseURL}`, GRPC: `https://akash.grpc.${baseURL}`},
       { network: 'Canto', API: `https://canto.api.${baseURL}`, RPC: `https://canto.rpc.${baseURL}`, GRPC: `https://canto.grpc.${baseURL}`, EVMRPC: `https://canto.evm.${baseURL}` },
-      { network: 'Chihuahua', API: `https://chihuahua.api.${baseURL}`, RPC: `https://chihuauha.rpc.${baseURL}`, GRPC: `https://chihuahua.grpc.${baseURL}` },
-      { network: 'Comdex', API: `https://comdex.api.${baseURL}`, RPC: `https://comdex.rpc.${baseURL}`, GRPC: `https://comdex.grpc.${baseURL}` },
       { network: 'Evmos', API: `https://evmos.api.${baseURL}`, RPC: `https://evmos.rpc.${baseURL}`, GRPC: `https://evmos.grpc.${baseURL}`, EVMRPC: `https://evmos.evm.${baseURL}` },
       { network: 'Kava', API: `https://kava.api.${baseURL}`, RPC: `https://kava.rpc.${baseURL}`, GRPC: `https://kava.grpc.${baseURL}`, EVMRPC: `https://kava.evm.${baseURL}` },
       { network: 'Gravity', API: `https://gravity.api.${baseURL}`, RPC: `https://gravity.rpc.${baseURL}`, GRPC: `https://gravity.grpc.${baseURL}` },
       { network: 'Juno', API: `https://juno.api.${baseURL}`, RPC: `https://juno.rpc.${baseURL}`, GRPC: `https://juno.grpc.${baseURL}` },
       { network: 'OmniFlix', API: `https://flix.api.${baseURL}`, RPC: `https://flix.rpc.${baseURL}`, GRPC: `https://flix.grpc.${baseURL}` },
       { network: 'Osmosis', API: `https://osmosis.api.${baseURL}`, RPC: `https://osmosis.rpc.${baseURL}`, GRPC: `https://osmosis.grpc.${baseURL}` },
-      { network: 'Stride', API: `https://stride.api.${baseURL}`, RPC: `https://stride.rpc.${baseURL}`, GRPC: `https://stride.grpc.${baseURL}` },
     ],
     snapshots: [
       { network: 'Akash', snapshot: `${baseSnapshotURL}akash/` },
       { network: 'Kava', snapshot: `${baseSnapshotURL}kava/` },
       { network: 'Canto', snapshot: `${baseSnapshotURL}canto/` },
-      { network: 'Chihuahua', snapshot: `${baseSnapshotURL}huahua` },
-      { network: 'Comdex', snapshot: `${baseSnapshotURL}comdex` },
-      { network: 'Emoney', snapshot: `${baseSnapshotURL}emd` },
-      { network: 'Evmos', snapshot: `${baseSnapshotURL}evmos` },
       { network: 'Gravity', snapshot: `${baseSnapshotURL}gravity/` },
-      { network: 'Juno', snapshot: `${baseSnapshotURL}juno` },
       { network: 'OmniFlix', snapshot: `${baseSnapshotURL}omniflix/` },
       { network: 'Osmosis', snapshot: `${baseSnapshotURL}osmosis/` },
-      { network: 'Stride', snapshot: `${baseSnapshotURL}stride/` },
+      { network: 'Althea', snapshot: `${baseSnapshotURL}althea/` },
     ]
   };
 
@@ -97,7 +89,7 @@ type Snapshot = {
   name: string;
   blockHeight: number;
   size: number;
-  date: string; 
+  date: string;
 }
 
 interface Props {
@@ -110,7 +102,7 @@ const snapshot: Snapshot = {
   name: "name",
   blockHeight: 123,
   size: 123,
-  date: "date", 
+  date: "date",
 }
 
   const formatEndpointLink = (endpoint: Endpoint, endpointType: EndpointType) => {
@@ -258,7 +250,7 @@ const snapshot: Snapshot = {
                   bg={useColorModeValue("rgba(1, 49, 51, 1)", "rgba(181, 253, 255, 1)")}
                   color={useColorModeValue("rgba(181, 253, 255, 1)", "rgba(1, 49, 51, 1)")}
                   >
-                    <MenuItem 
+                    <MenuItem
                      _hover={{
                       textDecoration: "underline",
                     }}
@@ -266,7 +258,7 @@ const snapshot: Snapshot = {
                     onClick={() => setEndpointType("API")}>
                       <Text>API</Text>
                     </MenuItem>
-                    <MenuItem 
+                    <MenuItem
                      _hover={{
                       textDecoration: "underline",
                     }}
@@ -274,7 +266,7 @@ const snapshot: Snapshot = {
                     onClick={() => setEndpointType("GRPC")}>
                       <Text>GRPC</Text>
                     </MenuItem>
-                    <MenuItem 
+                    <MenuItem
                      _hover={{
                       textDecoration: "underline",
                     }}
@@ -282,7 +274,7 @@ const snapshot: Snapshot = {
                     onClick={() => setEndpointType("RPC")}>
                       <Text>RPC</Text>
                     </MenuItem>
-                    <MenuItem 
+                    <MenuItem
                      _hover={{
                       textDecoration: "underline",
                     }}
@@ -301,7 +293,7 @@ const snapshot: Snapshot = {
                 <Td>{endpoint.network}</Td>
                 {/* Display the endpoint based on the selected type */}
                 <Td pl={300}>
-                
+
                   <a href={formatEndpointLink(endpoint, endpointType as EndpointType)} target="_blank" rel="noopener noreferrer">
                     {displayEndpointLink(endpoint.network, endpointType)}
                   </a>
@@ -317,23 +309,23 @@ const snapshot: Snapshot = {
     <Tr>
       <Th>Network</Th>
       <Th pl={10}>Snapshot File</Th>
-      <Th pl={10}>Height</Th> 
-      <Th pl={10}>Size</Th> 
-      <Th pl={10}>Date</Th> 
+      <Th pl={10}>Height</Th>
+      <Th pl={10}>Size</Th>
+      <Th pl={10}>Date</Th>
     </Tr>
   </Thead>
   <Tbody>
     {snapshotData.map((snapshot, index) => (
       <Tr key={index}>
-        
+
         <Td>{snapshot.network}</Td>
         <Td>
   <Button textDecoration="underline" variant="ghost" as="a" href={snapshot.link} target="_blank" rel="noopener noreferrer" colorScheme="teal">
     {snapshot.name}
   </Button>
 </Td>
-      <Td pl={10}>{formatBlockHeight(snapshot.blockHeight)}</Td> 
-      <Td pl={10}>{snapshot.size}</Td> 
+      <Td pl={10}>{formatBlockHeight(snapshot.blockHeight)}</Td>
+      <Td pl={10}>{snapshot.size}</Td>
       <Td pl={10}>{snapshot.date}</Td>
       </Tr>
     ))}
@@ -349,7 +341,7 @@ const snapshot: Snapshot = {
         <Button
          _hover={{
           bgColor: buttonHover
-                  
+
                 }}
         my={20}
         bgColor={useColorModeValue("rgba(1, 49, 51, 0.25)", "rgba(181, 253, 255, 0.25)")}
