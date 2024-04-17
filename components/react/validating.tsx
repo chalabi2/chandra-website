@@ -168,7 +168,7 @@ function Validating() {
                   )}
                 />
               </Box>
-              <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>12</Text>
+              <Text fontSize={{ base: "lg", sm: "2xl", md: "3xl" }}>14</Text>
             </Flex>
           </GridItem>
           <GridItem>

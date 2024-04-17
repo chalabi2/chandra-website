@@ -46,8 +46,20 @@ const networks = [
   },
   {
     name: "osmo",
-    baseURL: "https://nodes.chandrastation.com/api/osmosis/",
+    baseURL: "https://osmosis-api.polkachu.com",
     valoperAddress: "osmovaloper10ymws40tepmjcu3a2wuy266ddna4ktas0zuzm4",
+    decimal: 6,
+  },
+  {
+    name: "saga",
+    baseURL: "https://nodes.chandrastation.com/api/saga",
+    valoperAddress: "sagavaloper106y6thy7gphzrsqq443hl69vfdvntgz2rcxrw2",
+    decimal: 6,
+  },
+  {
+    name: "qck",
+    baseURL: "https://nodes.chandrastation.com/api/quicksilver",
+    valoperAddress: "quickvaloper106y6thy7gphzrsqq443hl69vfdvntgz2xfhd5x",
     decimal: 6,
   },
 ];
@@ -60,6 +72,7 @@ export async function getDelegators() {
       )
       .catch((error) => {
         console.error(`${name} request for stakers failed with: ${error}`);
+
         return { data: { pagination: { total: 0 } } };
       });
   });
@@ -97,7 +110,7 @@ export async function getTvl() {
   );
 
   const responses = await Promise.all(requests);
-
+  console.log(responses);
   const tokensByNetwork = responses.reduce(
     (acc: Record<string, number>, { name, tokens }) => {
       acc[name] = Number(tokens);
@@ -108,7 +121,7 @@ export async function getTvl() {
 
   const valueRequests = networks.map(({ name }) => {
     if (name === "canto") {
-      const cantoPrice = 0.148071;
+      const cantoPrice = 0.1623;
       return Promise.resolve({
         name,
         value: tokensByNetwork[name] * cantoPrice,
@@ -131,6 +144,6 @@ export async function getTvl() {
   const totalValue = valueResponses.reduce((acc, { value }) => {
     return acc + value;
   }, 0);
-
+  console.log(totalValue, valueRequests);
   return Intl.NumberFormat("en-US").format(totalValue);
 }

@@ -85,6 +85,18 @@ const ServicesPage = () => {
         RPC: `${baseURL}/rpc/osmosis/`,
         GRPC: `${baseURL}/grpc/osmosis/`,
       },
+      {
+        network: "Saga",
+        REST: `${baseURL}/api/saga/`,
+        RPC: `${baseURL}/rpc/saga/`,
+        GRPC: `${baseURL}/grpc/saga/`,
+      },
+      {
+        network: "Quicksilver",
+        REST: `${baseURL}/api/quicksilver/`,
+        RPC: `${baseURL}/rpc/quicksilver/`,
+        GRPC: `${baseURL}/grpc/quicksilver/`,
+      },
     ],
     snapshots: [
       { network: "Akash", snapshot: `${baseSnapshotURL}akash/` },
@@ -151,6 +163,9 @@ const ServicesPage = () => {
 
   // Function to format the displayed endpoint link
   const displayEndpointLink = (network: string, endpointType: string) => {
+    if (endpointType === "EVM RPC") {
+      return `https://nodes.chandrastation.com/evm/${network.toLowerCase()}/`;
+    }
     return `https://nodes.chandrastation.com/${endpointType.toLowerCase()}/${network.toLowerCase()}/`;
   };
 
